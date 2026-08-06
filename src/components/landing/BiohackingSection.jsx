@@ -12,7 +12,7 @@ const biohackingPillars = [
     title: 'Hidratacion',
     description:
       'Agua como punto de entrada simple para empezar a cuidar el bienestar cotidiano.',
-    accent: 'Agua diaria',
+    accent: 'Agua',
     image: 'https://equipobioenergy.com/images/productos/jam3l-1.jpg',
   },
   {
@@ -39,7 +39,8 @@ function BiohackingSection() {
             </h2>
             <p className="mt-4 max-w-2xl text-base leading-7 text-[#5f7165] sm:text-lg sm:leading-8">
               Un enfoque claro para conversar con personas que quieren empezar
-              por descanso, agua y movimiento antes de elegir un producto.
+              por descanso, hidratacion y movimiento antes de elegir un
+              producto.
             </p>
 
             <div className="mt-8 grid gap-3 sm:grid-cols-3">
@@ -70,12 +71,9 @@ function BiohackingSection() {
                       {pillar.description}
                     </p>
 
-                    <div className="mt-auto flex items-center justify-between gap-3 pt-6">
-                      <span className="rounded-full border border-[#dbe6d8] bg-[#f7fbf4] px-3 py-1 text-xs font-black text-[#38613c]">
+                    <div className="mt-auto flex items-center gap-3 pt-6">
+                      <span className="whitespace-nowrap rounded-full border border-[#dbe6d8] bg-[#f7fbf4] px-3 py-1 text-xs font-black text-[#38613c]">
                         {pillar.accent}
-                      </span>
-                      <span className="text-xs font-black uppercase tracking-normal text-[#148a45] transition duration-300 group-hover:translate-x-1">
-                        Ver mas -&gt;
                       </span>
                     </div>
                   </div>
