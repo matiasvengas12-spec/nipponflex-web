@@ -111,6 +111,40 @@ html {
   transform: scale(1.065);
 }
 
+.fx-scroll-reveal {
+  opacity: 0;
+  transform: translate3d(0, 34px, 0) scale(0.98);
+  transition:
+    opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.fx-scroll-reveal.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+.fx-scroll-card {
+  opacity: 0;
+  transform: translate3d(0, 24px, 0);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.fx-scroll-reveal.is-visible .fx-scroll-card {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.fx-scroll-card:hover,
+.fx-scroll-card:focus-within {
+  border-color: rgb(215 189 114 / 0.9);
+  box-shadow: 0 24px 50px rgb(0 0 0 / 0.32);
+}
+
 .fx-hero-frame {
   position: relative;
 }
