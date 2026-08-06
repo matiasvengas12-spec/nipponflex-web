@@ -44,17 +44,16 @@ function BiohackingSection() {
                 <a
                   key={pillar.title}
                   href="/biohacking"
-                  className="group relative isolate min-h-56 overflow-hidden rounded-lg border border-[#dbe6d8] bg-white p-5 no-underline shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#b8d1b5] hover:shadow-2xl hover:shadow-green-950/10 focus:-translate-y-1 focus:border-[#b8d1b5] focus:outline-none focus:ring-4 focus:ring-[#d9ebd6]"
+                  className="group relative flex min-h-60 flex-col overflow-hidden rounded-lg border border-[#dbe6d8] bg-white p-5 no-underline shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#b8d1b5] hover:shadow-2xl hover:shadow-green-950/10 focus:-translate-y-1 focus:border-[#b8d1b5] focus:outline-none focus:ring-4 focus:ring-[#d9ebd6]"
                 >
                   <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-[#148a45] via-[#f3b23c] to-[#2b6777]" />
-                  <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-[#edf7e9] transition duration-300 group-hover:scale-125" />
 
-                  <div className="relative">
-                    <div className="flex items-start justify-between gap-4">
-                      <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-[#12351f] text-sm font-black text-white shadow-lg shadow-green-950/15">
+                  <div className="flex h-full flex-col">
+                    <div className="grid grid-cols-[44px_1fr] items-center gap-3">
+                      <span className="inline-flex h-11 w-11 items-center justify-center rounded-md bg-[#12351f] text-sm font-black text-white shadow-lg shadow-green-950/15">
                         {pillar.number}
                       </span>
-                      <span className="rounded-full bg-[#f7fbf4] px-3 py-1 text-xs font-black text-[#38613c]">
+                      <span className="justify-self-start rounded-full border border-[#dbe6d8] bg-[#f7fbf4] px-3 py-1 text-xs font-black text-[#38613c]">
                         {pillar.accent}
                       </span>
                     </div>
@@ -66,7 +65,7 @@ function BiohackingSection() {
                       {pillar.description}
                     </p>
 
-                    <div className="mt-5 flex items-center gap-2 text-xs font-black uppercase tracking-normal text-[#148a45] opacity-80 transition duration-300 group-hover:translate-x-1 group-hover:opacity-100">
+                    <div className="mt-auto flex items-center gap-2 pt-5 text-xs font-black uppercase tracking-normal text-[#148a45] opacity-80 transition duration-300 group-hover:translate-x-1 group-hover:opacity-100">
                       <span>Explorar enfoque</span>
                       <span aria-hidden="true">-&gt;</span>
                     </div>
