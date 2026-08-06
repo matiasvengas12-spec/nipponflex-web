@@ -1,22 +1,20 @@
-import { useEffect, useState } from 'react'
-
 const biohackingBenefits = [
   {
     title: 'Descanso Inteligente',
-    image: '/images/biohacking-benefit-descanso.png',
+    image: 'https://equipobioenergy.com/images/productos/almh1-1.png',
     points: [
-      'Sueno reparador profundo',
-      'Recuperacion muscular acelerada',
-      'Mayor energia al despertar',
+      'Sueño reparador profundo',
+      'Recuperación muscular acelerada',
+      'Mayor energía al despertar',
     ],
   },
   {
-    title: 'Hidratacion Celular',
-    image: '/images/biohacking-benefit-hidratacion.png',
+    title: 'Hidratación Celular',
+    image: 'https://equipobioenergy.com/images/productos/jam3l-1.jpg',
     points: [
       'Agua alcalina ionizada',
-      'Mejor absorcion celular',
-      'Desintoxicacion efectiva',
+      'Mejor absorción celular',
+      'Desintoxicación efectiva',
     ],
   },
   {
@@ -24,34 +22,13 @@ const biohackingBenefits = [
     image: '/images/biohacking-benefit-movimiento.png',
     points: [
       'Postura y equilibrio mejorados',
-      'Circulacion sanguinea optimizada',
-      'Reduccion de la fatiga',
+      'Circulación sanguínea optimizada',
+      'Reducción de la fatiga',
     ],
   },
 ]
 
-const biohackingSlides = [
-  {
-    image: '/images/biohacking-home-slide-tech.png',
-    alt: 'Mapa corporal con ejes de descanso inteligente, hidratacion celular y movimiento',
-  },
-  {
-    image: '/images/biohacking-home-slide-lifestyle.png',
-    alt: 'Rutina cotidiana de hidratacion y descanso como entrada al biohacking',
-  },
-]
-
 function BiohackingSection() {
-  const [activeSlide, setActiveSlide] = useState(0)
-
-  useEffect(() => {
-    const interval = window.setInterval(() => {
-      setActiveSlide((current) => (current + 1) % biohackingSlides.length)
-    }, 4200)
-
-    return () => window.clearInterval(interval)
-  }, [])
-
   return (
     <section
       id="biohacking"
@@ -66,34 +43,11 @@ function BiohackingSection() {
           <div className="mt-10 grid gap-6 lg:grid-cols-[0.82fr_2.18fr] lg:items-stretch">
             <div className="fx-reveal fx-reveal-delay-1 fx-card relative overflow-hidden rounded-lg border border-white/70 bg-white/45 shadow-xl shadow-green-950/10 backdrop-blur">
               <div className="relative h-[360px] sm:h-[520px] lg:h-full lg:min-h-[520px]">
-                {biohackingSlides.map((slide, index) => (
-                  <img
-                    key={slide.image}
-                    src={slide.image}
-                    alt={slide.alt}
-                    className={`absolute inset-0 h-full w-full object-contain p-4 transition duration-700 sm:p-6 ${
-                      activeSlide === index
-                        ? 'opacity-100'
-                        : 'pointer-events-none opacity-0'
-                    }`}
-                  />
-                ))}
-              </div>
-
-              <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
-                {biohackingSlides.map((slide, index) => (
-                  <button
-                    key={slide.image}
-                    type="button"
-                    aria-label={`Ver imagen ${index + 1} del carrusel`}
-                    onClick={() => setActiveSlide(index)}
-                    className={`h-2.5 rounded-full transition focus:outline-none focus:ring-2 focus:ring-[#148a45] focus:ring-offset-2 ${
-                      activeSlide === index
-                        ? 'w-8 bg-[#148a45]'
-                        : 'w-2.5 bg-white/80'
-                    }`}
-                  />
-                ))}
+                <img
+                  src="/images/biohacking-home-slide-lifestyle.png"
+                  alt="Rutina cotidiana de hidratacion y descanso como entrada al biohacking"
+                  className="h-full w-full object-cover"
+                />
               </div>
             </div>
 
@@ -120,8 +74,8 @@ function BiohackingSection() {
                           key={point}
                           className="grid grid-cols-[24px_1fr] gap-3 text-sm font-medium leading-5 text-[#12351f]"
                         >
-                          <span className="mt-0.5 inline-flex h-5 w-5 items-center justify-center rounded-full border border-[#12351f] text-[10px] font-black">
-                            OK
+                          <span className="mt-0.5 inline-flex h-5 w-5 items-center justify-center rounded-full border border-[#12351f] text-xs font-black">
+                            ✓
                           </span>
                           <span>{point}</span>
                         </li>
