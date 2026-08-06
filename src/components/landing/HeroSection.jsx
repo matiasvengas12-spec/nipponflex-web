@@ -7,7 +7,8 @@ function HeroSection() {
       <div className="mx-auto grid max-w-7xl items-center gap-8 px-4 py-12 sm:px-8 sm:py-16 lg:min-h-[680px] lg:grid-cols-[1.02fr_0.98fr] lg:gap-12 lg:px-10 lg:py-24">
         <div className="max-w-3xl">
           <p className="mb-4 inline-flex rounded-full border border-[#c8dec4] bg-white px-3 py-2 text-xs font-semibold leading-5 text-[#38613c] shadow-sm sm:px-4 sm:text-sm">
-            Biohacking, descanso e hidratación con tecnología Nipponflex
+            <span>Biohacking, descanso e hidratación</span>
+            <span className="hidden sm:inline"> con tecnología Nipponflex</span>
           </p>
           <h1 className="text-4xl font-black leading-[1.02] tracking-normal text-[#12351f] sm:text-6xl lg:text-7xl">
             Bienestar que se siente, tecnología que se demuestra
