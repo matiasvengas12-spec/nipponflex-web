@@ -1,90 +1,128 @@
-const technologies = [
+const coreTechnologies = [
   {
     number: '01',
-    name: 'Campos magneticos',
+    name: 'Campos magnéticos',
+    image: '/images/technology-magnetic-fields.png',
     summary:
-      'Una linea de productos pensada para hablar de descanso, relajacion y contacto con una experiencia inspirada en la naturaleza.',
-    uses: ['Descanso', 'Relax', 'Uso diario'],
+      'Una lectura de bienestar inspirada en la conexión con la tierra: equilibrio, circulación y descarga de tensión cotidiana.',
+    tags: ['Equilibrio natural', 'Circulación', 'Descanso'],
   },
   {
     number: '02',
     name: 'FIR Power',
+    image: '/images/technology-fir-power.png',
     summary:
-      'Bioceramica asociada al calor corporal y al confort profundo, presentada de forma simple para el usuario final.',
-    uses: ['Confort', 'Rutina', 'Bienestar'],
-  },
-  {
-    number: '03',
-    name: 'Ion Balls',
-    summary:
-      'Tecnologia mineral para conversar sobre equilibrio, entorno urbano y sensacion de bienestar cotidiano.',
-    uses: ['Entorno', 'Equilibrio', 'Habitos'],
-  },
-  {
-    number: '04',
-    name: 'Magnetic FIR Power',
-    summary:
-      'Integracion del enfoque FIR y magnetico en productos que buscan una experiencia mas completa.',
-    uses: ['Sinergia', 'Tecnologia', 'Asesoria'],
+      'Biocerámica pensada para trabajar con el calor corporal y acompañar una sensación de confort más profunda.',
+    tags: ['Calor corporal', 'Confort', 'Recuperación'],
   },
 ]
 
+const ionTags = ['Entorno más limpio', 'Smog iónico', 'Aire y rutina']
+
 function TechnologiesPage() {
   return (
-    <main className="bg-white">
-      <section className="bg-[#101c16] px-4 py-12 text-white sm:px-8 sm:py-18 lg:px-10">
+    <main className="bg-[#101c16] text-white">
+      <section className="px-4 py-14 sm:px-8 sm:py-18 lg:px-10">
         <div className="mx-auto max-w-7xl">
-          <p className="text-sm font-black uppercase tracking-normal text-[#f3b23c]">
-            Tecnologias Nipponflex
-          </p>
-          <div className="mt-7 grid grid-cols-2 gap-3 sm:max-w-lg">
-            {['FIR Power', 'Ion Balls', 'Magneto', 'MFP'].map((item) => (
-              <div
-                key={item}
-                className="border border-white/15 bg-white/8 px-4 py-3 text-sm font-black"
-              >
-                {item}
-              </div>
-            ))}
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="text-sm font-black uppercase tracking-normal text-[#d7bd72]">
+              Tecnologías Nipponflex
+            </p>
+            <h1 className="mt-4 text-3xl font-black leading-tight sm:text-5xl">
+              Tecnología aplicada al descanso, el agua y el bienestar diario
+            </h1>
+            <p className="mt-5 text-base leading-7 text-white/72 sm:text-lg sm:leading-8">
+              Nipponflex combina recursos inspirados en la naturaleza con
+              materiales de uso cotidiano. La clave no es prometer magia, sino
+              explicar cada tecnología con claridad para elegir mejor.
+            </p>
           </div>
-        </div>
-      </section>
 
-      <section className="px-4 py-14 sm:px-8 sm:py-20 lg:px-10">
-        <div className="mx-auto max-w-7xl">
-          <div className="grid gap-4 lg:grid-cols-2">
-            {technologies.map((tech) => (
+          <div className="mt-12 grid gap-6 lg:grid-cols-2">
+            {coreTechnologies.map((tech) => (
               <article
                 key={tech.name}
-                className="grid gap-5 border border-[#dbe6d8] bg-[#f7fbf4] p-5 sm:p-6"
+                className="fx-card overflow-hidden rounded-lg border border-white/10 bg-white/[0.04] shadow-2xl shadow-black/20"
               >
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <span className="text-sm font-black text-[#148a45]">
-                      {tech.number}
-                    </span>
-                    <h2 className="mt-3 text-2xl font-black text-[#12351f] sm:text-3xl">
-                      {tech.name}
-                    </h2>
+                <div className="h-1 bg-gradient-to-r from-[#d7bd72] via-[#f3b23c] to-transparent" />
+                <img
+                  src={tech.image}
+                  alt={tech.name}
+                  className="h-56 w-full object-cover sm:h-64"
+                />
+                <div className="p-5 sm:p-6">
+                  <span className="text-4xl font-black leading-none text-[#d7bd72]">
+                    {tech.number}
+                  </span>
+                  <h2 className="mt-3 text-2xl font-black leading-tight sm:text-3xl">
+                    {tech.name}
+                  </h2>
+                  <p className="mt-3 text-sm leading-6 text-white/72 sm:text-base sm:leading-7">
+                    {tech.summary}
+                  </p>
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {tech.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-full border border-white/15 bg-white/[0.05] px-3 py-1 text-xs font-bold text-white/82"
+                      >
+                        {tag}
+                      </span>
+                    ))}
                   </div>
-                  <span className="h-2 w-16 bg-[#f3b23c]" />
-                </div>
-                <p className="text-sm leading-6 text-[#5f7165] sm:text-base sm:leading-7">
-                  {tech.summary}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {tech.uses.map((use) => (
-                    <span
-                      key={use}
-                      className="rounded-full bg-white px-3 py-1 text-xs font-bold text-[#38613c]"
-                    >
-                      {use}
-                    </span>
-                  ))}
                 </div>
               </article>
             ))}
           </div>
+
+          <div className="mt-6 grid gap-6 lg:grid-cols-[1fr_0.95fr] lg:items-stretch">
+            <article className="fx-card overflow-hidden rounded-lg border border-white/10 bg-white/[0.04] shadow-2xl shadow-black/20">
+              <img
+                src="/images/technology-ion-nature.png"
+                alt="Naturaleza como referencia para los iones negativos"
+                className="h-full min-h-[320px] w-full object-cover"
+              />
+            </article>
+
+            <article className="fx-card overflow-hidden rounded-lg border border-white/10 bg-white/[0.04] shadow-2xl shadow-black/20">
+              <div className="h-1 bg-gradient-to-r from-[#d7bd72] via-[#f3b23c] to-transparent" />
+              <img
+                src="/images/technology-ion-balls.png"
+                alt="Ion Balls y purificación del entorno"
+                className="h-48 w-full object-cover"
+              />
+              <div className="p-5 sm:p-6">
+                <span className="text-4xl font-black leading-none text-[#d7bd72]">
+                  03
+                </span>
+                <h2 className="mt-3 text-2xl font-black leading-tight sm:text-3xl">
+                  Ion Balls
+                </h2>
+                <p className="mt-3 text-sm leading-6 text-white/72 sm:text-base sm:leading-7">
+                  Un recurso mineral para hablar del entorno: aire, hábitos y
+                  reducción de interferencias de la vida urbana.
+                </p>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {ionTags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-full border border-white/15 bg-white/[0.05] px-3 py-1 text-xs font-bold text-white/82"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <article className="fx-card mt-6 overflow-hidden rounded-lg border border-white/10 bg-white/[0.04] shadow-2xl shadow-black/20">
+            <img
+              src="/images/technology-mfp.png"
+              alt="Magnetic FIR Power como sinergia de tecnologías Nipponflex"
+              className="min-h-[360px] w-full object-cover"
+            />
+          </article>
         </div>
       </section>
     </main>
