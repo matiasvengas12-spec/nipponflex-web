@@ -38,10 +38,9 @@ function HeroSection() {
             </a>
           </div>
 
-          <div className="mt-10 grid max-w-xl grid-cols-3 gap-3 text-left">
+          <div className="mt-10 grid max-w-md grid-cols-2 gap-3 text-left">
             {[
               ['+10', 'países con presencia'],
-              ['1:1', 'seguimiento humano'],
               ['+80', 'productos Nipponflex'],
             ].map(([value, label]) => (
               <div key={label} className="border-l-2 border-[#f3b23c] pl-4">
