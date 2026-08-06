@@ -17,7 +17,8 @@ function HeroSection() {
             Bienestar que se siente, tecnología que se demuestra
           </p>
           <h1 className="fx-reveal fx-reveal-delay-1 mt-4 text-4xl font-black leading-[1.05] tracking-normal sm:text-6xl lg:text-7xl">
-            Biohacking, descanso e hidratación con tecnología Nipponflex
+            <span>Biohacking, descanso e hidratación</span>
+            <span className="hidden sm:inline"> con tecnología Nipponflex</span>
           </h1>
           <p className="fx-reveal fx-reveal-delay-2 mt-6 max-w-3xl text-base leading-7 text-white/90 sm:text-xl sm:leading-8">
             Te ayudamos a elegir productos con tecnología FIR Power, Ion Ball y

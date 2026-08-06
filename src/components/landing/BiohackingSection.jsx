@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react'
+
 const biohackingPillars = [
   {
     number: '01',
@@ -25,7 +27,28 @@ const biohackingPillars = [
   },
 ]
 
+const biohackingSlides = [
+  {
+    image: '/images/biohacking-home-slide-tech.png',
+    alt: 'Mapa corporal con ejes de descanso inteligente, hidratacion celular y movimiento',
+  },
+  {
+    image: '/images/biohacking-home-slide-lifestyle.png',
+    alt: 'Rutina cotidiana de hidratacion y descanso como entrada al biohacking',
+  },
+]
+
 function BiohackingSection() {
+  const [activeSlide, setActiveSlide] = useState(0)
+
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setActiveSlide((current) => (current + 1) % biohackingSlides.length)
+    }, 4200)
+
+    return () => window.clearInterval(interval)
+  }, [])
+
   return (
     <section
       id="biohacking"
@@ -93,18 +116,35 @@ function BiohackingSection() {
           </div>
 
           <div className="fx-reveal fx-reveal-delay-2 fx-card relative overflow-hidden rounded-lg border border-[#dbe6d8] bg-white shadow-xl shadow-green-950/10">
-            <img
-              src="https://equipobioenergy.com/images/inicio/ventaja-mejora.jpg"
-              alt="Rutina de bienestar y biohacking natural"
-              className="fx-card-media h-[340px] w-full object-cover sm:h-[460px]"
-            />
-            <div className="absolute inset-x-4 bottom-4 rounded-md bg-white/95 p-4 shadow-lg backdrop-blur">
-              <p className="text-sm font-black uppercase tracking-normal text-[#148a45]">
-                Punto de acceso
-              </p>
-              <p className="mt-1 text-lg font-black leading-6 text-[#12351f]">
-                Contenido educativo para transformar interes en asesoramiento.
-              </p>
+            <div className="relative h-[340px] bg-[#f7fbf4] sm:h-[460px]">
+              {biohackingSlides.map((slide, index) => (
+                <img
+                  key={slide.image}
+                  src={slide.image}
+                  alt={slide.alt}
+                  className={`absolute inset-0 h-full w-full object-contain p-3 transition duration-700 sm:p-5 ${
+                    activeSlide === index
+                      ? 'opacity-100'
+                      : 'pointer-events-none opacity-0'
+                  }`}
+                />
+              ))}
+            </div>
+
+            <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
+              {biohackingSlides.map((slide, index) => (
+                <button
+                  key={slide.image}
+                  type="button"
+                  aria-label={`Ver imagen ${index + 1} del carrusel`}
+                  onClick={() => setActiveSlide(index)}
+                  className={`h-2.5 rounded-full transition focus:outline-none focus:ring-2 focus:ring-[#148a45] focus:ring-offset-2 ${
+                    activeSlide === index
+                      ? 'w-8 bg-[#148a45]'
+                      : 'w-2.5 bg-[#9ab49b]'
+                  }`}
+                />
+              ))}
             </div>
           </div>
         </div>
