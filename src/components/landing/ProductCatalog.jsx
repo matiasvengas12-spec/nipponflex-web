@@ -6,13 +6,13 @@ function ProductCatalog() {
     <section id="catalogo" className="bg-white px-4 py-14 sm:px-8 sm:py-20 lg:px-10">
       <div className="mx-auto max-w-7xl">
         <div className="max-w-3xl">
-          <p className="text-sm font-black uppercase tracking-normal text-[#148a45]">
+          <p className="fx-reveal text-sm font-black uppercase tracking-normal text-[#148a45]">
             Catálogo consultivo
           </p>
-          <h2 className="mt-3 text-3xl font-black leading-tight text-[#12351f] sm:text-5xl">
+          <h2 className="fx-reveal fx-reveal-delay-1 mt-3 text-3xl font-black leading-tight text-[#12351f] sm:text-5xl">
             Productos Nipponflex destacados
           </h2>
-          <p className="mt-4 text-base leading-7 text-[#5f7165] sm:mt-5 sm:text-lg sm:leading-8">
+          <p className="fx-reveal fx-reveal-delay-2 mt-4 text-base leading-7 text-[#5f7165] sm:mt-5 sm:text-lg sm:leading-8">
             Esta primera selección replica los productos del catálogo de
             referencia para validar la experiencia. Cada consulta se piensa como
             lead calificado, no como carrito de compra.
