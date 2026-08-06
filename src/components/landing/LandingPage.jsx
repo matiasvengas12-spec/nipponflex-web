@@ -1,3 +1,4 @@
+import BiohackingSection from './BiohackingSection'
 import FloatingWhatsApp from './FloatingWhatsApp'
 import HeroSection from './HeroSection'
 import InstagramSection from './InstagramSection'
@@ -7,6 +8,7 @@ function LandingPage() {
   return (
     <main>
       <HeroSection />
+      <BiohackingSection />
       <ProductCatalog />
       <InstagramSection />
       <FloatingWhatsApp />

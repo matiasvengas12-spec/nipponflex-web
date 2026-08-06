@@ -11,16 +11,16 @@ function HeroSection() {
       <div className="mx-auto grid min-h-[680px] max-w-7xl items-center gap-12 px-5 py-24 sm:px-8 lg:grid-cols-[1.02fr_0.98fr] lg:px-10">
         <div className="max-w-3xl">
           <p className="mb-5 inline-flex rounded-full border border-[#c8dec4] bg-white px-4 py-2 text-sm font-semibold text-[#38613c] shadow-sm">
-            Distribuidores oficiales Nipponflex en Argentina
+            Biohacking, descanso e hidratación con tecnología Nipponflex
           </p>
           <h1 className="text-5xl font-black leading-[0.98] tracking-normal text-[#12351f] sm:text-6xl lg:text-7xl">
             Bienestar que se siente, tecnología que se demuestra
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-[#4f6656] sm:text-xl">
             Te ayudamos a elegir productos con tecnología FIR Power, Ion Ball y
-            Magneto según tu rutina, tu descanso y tus objetivos. Sin carrito:
-            primero conversamos, entendemos tu caso y armamos una recomendación
-            clara.
+            Magneto según tu rutina, tu descanso y tus objetivos. Usamos el
+            biohacking como punto de partida: hábitos simples, agua, descanso y
+            bienestar medible en la vida cotidiana.
           </p>
 
           <a

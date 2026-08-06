@@ -20,9 +20,9 @@ function InstagramSection() {
                 {INSTAGRAM_HANDLE}
               </p>
               <p className="mt-2 max-w-xl text-base leading-7 text-[#5f7165]">
-                Este va a ser el canal de referencia para mostrar contenido,
-                generar confianza y levantar nuevos clientes interesados en
-                bienestar Nipponflex.
+                Este va a ser el canal de referencia para mostrar contenido de
+                biohacking, productos, hábitos de bienestar y novedades para
+                levantar nuevos clientes interesados en Nipponflex.
               </p>
             </div>
             <a
