@@ -1,3 +1,24 @@
+const biohackingCards = [
+  {
+    number: '01',
+    title: 'Dormir mejor',
+    text: 'Descanso, recuperacion y confort como primer indicador de bienestar cotidiano.',
+    image: '/images/biohacking-descanso.png',
+  },
+  {
+    number: '02',
+    title: 'Tomar mejor agua',
+    text: 'Hidratacion como habito simple para iniciar una conversacion de valor.',
+    image: '/images/biohacking-hidratacion.png',
+  },
+  {
+    number: '03',
+    title: 'Moverse con conciencia',
+    text: 'Postura, pisada y rutina diaria vistas desde una mirada mas practica.',
+    image: '/images/biohacking-movimiento.png',
+  },
+]
+
 function BiohackingPage() {
   return (
     <main className="bg-white">
@@ -27,12 +48,33 @@ function BiohackingPage() {
 
       <section className="px-4 py-14 sm:px-8 sm:py-20 lg:px-10">
         <div className="mx-auto max-w-7xl">
-          <div className="fx-card overflow-hidden rounded-lg border border-[#dbe6d8] bg-white shadow-2xl shadow-green-950/10">
-            <img
-              src="/images/biohacking-access-cards.png"
-              alt="Biohacking aplicado a descanso, hidratacion y movimiento"
-              className="w-full object-cover"
-            />
+          <div className="grid gap-4 md:grid-cols-3">
+            {biohackingCards.map((card) => (
+              <article
+                key={card.title}
+                className="fx-card group flex min-h-[460px] flex-col overflow-hidden rounded-lg border border-[#dbe6d8] bg-gradient-to-br from-[#eef8f0] via-white to-[#fbf7eb] p-3 shadow-xl shadow-green-950/10 transition duration-300 hover:-translate-y-1 hover:border-[#d7bd72] hover:shadow-2xl hover:shadow-green-950/15"
+              >
+                <div className="overflow-hidden rounded-md shadow-lg shadow-green-950/10">
+                  <img
+                    src={card.image}
+                    alt={card.title}
+                    className="fx-card-media aspect-[4/3] w-full object-cover"
+                  />
+                </div>
+
+                <div className="flex flex-1 flex-col px-3 pb-4 pt-5 sm:px-4">
+                  <span className="text-5xl font-black leading-none text-[#d7bd72] sm:text-6xl">
+                    {card.number}
+                  </span>
+                  <h2 className="mt-6 max-w-[14rem] text-2xl font-black leading-tight text-[#12351f] sm:text-3xl">
+                    {card.title}
+                  </h2>
+                  <p className="mt-3 text-base leading-6 text-[#12351f]">
+                    {card.text}
+                  </p>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </section>
