@@ -18,7 +18,7 @@ function SiteHeader() {
     <header className="sticky top-0 z-40 border-b border-[#dbe6d8] bg-white/95 px-4 backdrop-blur sm:px-8 lg:px-10">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 py-3 lg:min-h-16">
         <a href="/" className="text-base font-black text-[#12351f] sm:text-lg">
-          Vida Sana
+          Nippon Flex Vida Plena
         </a>
 
         <div className="hidden items-center gap-3 lg:flex">

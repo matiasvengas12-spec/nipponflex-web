@@ -35,17 +35,6 @@ function DistributorsPage() {
         <div className="absolute inset-x-0 top-0 h-52 bg-gradient-to-b from-[#050914] to-transparent" />
 
         <div className="relative z-10 mx-auto flex min-h-[calc(100svh-160px)] max-w-6xl flex-col items-center justify-center text-center">
-          <div className="mb-14 flex flex-col items-center gap-3 sm:mb-18">
-            <img
-              src="/favicon.svg"
-              alt=""
-              className="h-14 w-14 drop-shadow-[0_0_24px_rgba(215,189,114,0.65)] sm:h-18 sm:w-18"
-            />
-            <p className="text-2xl font-medium tracking-normal text-white sm:text-4xl">
-              Nippon<span className="font-black text-[#d7bd72]">flex</span>
-            </p>
-          </div>
-
           <p className="text-sm font-black uppercase tracking-normal text-[#d7bd72] sm:text-base">
             Oportunidad para distribuidores
           </p>
