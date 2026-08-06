@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import LandingPage from './components/landing/LandingPage'
 import SiteFooter from './components/layout/SiteFooter'
 import SiteHeader from './components/layout/SiteHeader'
@@ -12,6 +13,15 @@ function App() {
       : path === '/tecnologias'
         ? TechnologiesPage
         : LandingPage
+
+  useEffect(() => {
+    if (!window.location.hash) return
+
+    window.requestAnimationFrame(() => {
+      const target = document.querySelector(window.location.hash)
+      target?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    })
+  }, [path])
 
   return (
     <>

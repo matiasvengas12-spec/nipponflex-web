@@ -3,7 +3,10 @@ import { featuredProducts } from '../../data/products'
 
 function ProductCatalog() {
   return (
-    <section id="catalogo" className="bg-white px-4 py-14 sm:px-8 sm:py-20 lg:px-10">
+    <section
+      id="catalogo"
+      className="scroll-mt-28 bg-white px-4 py-14 sm:px-8 sm:py-20 lg:px-10"
+    >
       <div className="mx-auto max-w-7xl">
         <div className="max-w-3xl">
           <p className="fx-reveal text-sm font-black uppercase tracking-normal text-[#148a45]">
