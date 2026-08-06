@@ -16,21 +16,6 @@ const accessPoints = [
   },
 ]
 
-const routineSteps = [
-  {
-    title: 'Escucha inicial',
-    text: 'Rutina, descanso, hidratacion y objetivo principal.',
-  },
-  {
-    title: 'Lectura del caso',
-    text: 'Se ordena la informacion antes de hablar de productos.',
-  },
-  {
-    title: 'Recomendacion clara',
-    text: 'Una sugerencia concreta, simple y facil de aplicar.',
-  },
-]
-
 function BiohackingPage() {
   return (
     <main className="bg-white">
@@ -91,67 +76,12 @@ function BiohackingPage() {
             </p>
           </div>
 
-          <div className="fx-card overflow-hidden rounded-lg border border-white/15 bg-white text-[#12351f] shadow-2xl shadow-black/25">
-            <div className="border-b border-[#e1eadf] bg-[#f7fbf4] px-5 py-4 sm:px-6">
-              <p className="text-xs font-black uppercase tracking-normal text-[#148a45]">
-                Consulta guiada
-              </p>
-            </div>
-
-            <div className="grid gap-6 p-5 sm:p-6 lg:grid-cols-[1fr_0.95fr] lg:gap-7">
-              <div className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#e8f1e5] text-sm font-black text-[#38613c]">
-                    C
-                  </div>
-                  <div className="rounded-lg rounded-tl-none bg-[#eef5ea] p-4">
-                    <p className="text-sm font-black text-[#12351f]">
-                      Quiero mejorar mi descanso, pero no se por donde empezar.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start justify-end gap-3">
-                  <div className="max-w-[82%] rounded-lg rounded-tr-none bg-[#12351f] p-4 text-white">
-                    <p className="text-sm font-bold leading-6">
-                      Primero vemos tu rutina. Despues elegimos una opcion que
-                      tenga sentido para vos.
-                    </p>
-                  </div>
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#f3b23c] text-sm font-black text-[#12351f]">
-                    A
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-3 rounded-lg border border-[#dbe6d8] bg-white p-4">
-                  <span className="h-2 w-2 rounded-full bg-[#148a45]" />
-                  <p className="text-sm font-bold text-[#5f7165]">
-                    Resultado: menos vueltas, mas claridad y mejor consulta.
-                  </p>
-                </div>
-              </div>
-
-              <div className="grid gap-3">
-                {routineSteps.map((step, index) => (
-                  <div
-                    key={step.title}
-                    className="grid grid-cols-[38px_1fr] gap-3 rounded-lg border border-[#dbe6d8] bg-[#fbfdf9] p-4"
-                  >
-                    <span className="inline-flex h-9 w-9 items-center justify-center rounded-md bg-[#f3b23c] text-sm font-black text-[#12351f]">
-                      {index + 1}
-                    </span>
-                    <div>
-                      <p className="text-base font-black text-[#12351f]">
-                        {step.title}
-                      </p>
-                      <p className="mt-1 text-sm leading-6 text-[#5f7165]">
-                        {step.text}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+          <div className="fx-card overflow-hidden rounded-lg border border-white/15 bg-white shadow-2xl shadow-black/25">
+            <img
+              src="/images/biohacking-advisory-tech.png"
+              alt="Asesoramiento simple: escuchamos tu rutina, entendemos el objetivo y sugerimos un camino"
+              className="h-full w-full object-cover"
+            />
           </div>
         </div>
       </section>
