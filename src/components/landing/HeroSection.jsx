@@ -48,15 +48,6 @@ function HeroSection() {
       </div>
 
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-[#f7fbf4]" />
-      <div className="absolute inset-x-0 bottom-7 z-10 flex justify-center px-4">
-        <a
-          href="#biohacking"
-          aria-label="Bajar a biohacking"
-          className="group pointer-events-auto flex h-12 w-8 items-start justify-center rounded-full border border-white/55 bg-white/15 p-1.5 shadow-lg shadow-black/20 backdrop-blur transition hover:-translate-y-0.5 hover:border-white focus:outline-none focus:ring-4 focus:ring-white/25"
-        >
-          <span className="h-2 w-2 rounded-full bg-white transition group-hover:translate-y-4" />
-        </a>
-      </div>
     </section>
   )
 }
