@@ -4,18 +4,21 @@ const biohackingPillars = [
     title: 'Descanso',
     description:
       'Rutinas y productos orientados a mejorar la experiencia de recuperacion diaria.',
+    accent: 'Recuperacion',
   },
   {
     number: '02',
     title: 'Hidratacion',
     description:
       'Agua como punto de entrada simple para empezar a cuidar el bienestar cotidiano.',
+    accent: 'Agua diaria',
   },
   {
     number: '03',
     title: 'Movimiento',
     description:
       'Postura, pisada y actividad diaria acompanadas con tecnologia de uso practico.',
+    accent: 'Postura',
   },
 ]
 
@@ -38,20 +41,37 @@ function BiohackingSection() {
 
             <div className="mt-8 grid gap-3 sm:grid-cols-3">
               {biohackingPillars.map((pillar) => (
-                <article
+                <a
                   key={pillar.title}
-                  className="rounded-lg border border-[#dbe6d8] bg-white p-4 shadow-sm"
+                  href="/biohacking"
+                  className="group relative isolate min-h-56 overflow-hidden rounded-lg border border-[#dbe6d8] bg-white p-5 no-underline shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#b8d1b5] hover:shadow-2xl hover:shadow-green-950/10 focus:-translate-y-1 focus:border-[#b8d1b5] focus:outline-none focus:ring-4 focus:ring-[#d9ebd6]"
                 >
-                  <span className="text-xs font-black text-[#f3b23c]">
-                    {pillar.number}
-                  </span>
-                  <h3 className="mt-3 text-xl font-black text-[#12351f]">
-                    {pillar.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-6 text-[#5f7165]">
-                    {pillar.description}
-                  </p>
-                </article>
+                  <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-[#148a45] via-[#f3b23c] to-[#2b6777]" />
+                  <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-[#edf7e9] transition duration-300 group-hover:scale-125" />
+
+                  <div className="relative">
+                    <div className="flex items-start justify-between gap-4">
+                      <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-[#12351f] text-sm font-black text-white shadow-lg shadow-green-950/15">
+                        {pillar.number}
+                      </span>
+                      <span className="rounded-full bg-[#f7fbf4] px-3 py-1 text-xs font-black text-[#38613c]">
+                        {pillar.accent}
+                      </span>
+                    </div>
+
+                    <h3 className="mt-5 text-2xl font-black text-[#12351f]">
+                      {pillar.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-6 text-[#5f7165]">
+                      {pillar.description}
+                    </p>
+
+                    <div className="mt-5 flex items-center gap-2 text-xs font-black uppercase tracking-normal text-[#148a45] opacity-80 transition duration-300 group-hover:translate-x-1 group-hover:opacity-100">
+                      <span>Explorar enfoque</span>
+                      <span aria-hidden="true">-&gt;</span>
+                    </div>
+                  </div>
+                </a>
               ))}
             </div>
 
