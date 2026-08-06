@@ -1,4 +1,5 @@
 import LandingPage from './components/landing/LandingPage'
+import SiteFooter from './components/layout/SiteFooter'
 import SiteHeader from './components/layout/SiteHeader'
 import BiohackingPage from './pages/BiohackingPage'
 import TechnologiesPage from './pages/TechnologiesPage'
@@ -16,6 +17,7 @@ function App() {
     <>
       <SiteHeader />
       <Page />
+      <SiteFooter />
     </>
   )
 }
