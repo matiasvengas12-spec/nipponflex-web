@@ -42,6 +42,13 @@ function BiohackingSection() {
             </article>
           ))}
         </div>
+
+        <a
+          href="/biohacking"
+          className="mt-8 inline-flex items-center justify-center rounded-md bg-[#f3b23c] px-5 py-3 text-sm font-bold text-[#12351f] transition hover:bg-[#ffca67] focus:outline-none focus:ring-4 focus:ring-[#f8d58b]"
+        >
+          Ver mas sobre biohacking
+        </a>
       </div>
     </section>
   )
