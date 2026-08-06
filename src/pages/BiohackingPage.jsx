@@ -1,21 +1,3 @@
-const accessPoints = [
-  {
-    label: '01',
-    title: 'Dormir mejor',
-    text: 'Descanso, recuperacion y confort como primer indicador de bienestar cotidiano.',
-  },
-  {
-    label: '02',
-    title: 'Tomar mejor agua',
-    text: 'Hidratacion como habito simple para iniciar una conversacion de valor.',
-  },
-  {
-    label: '03',
-    title: 'Moverse con conciencia',
-    text: 'Postura, pisada y rutina diaria vistas desde una mirada mas practica.',
-  },
-]
-
 function BiohackingPage() {
   return (
     <main className="bg-white">
@@ -39,23 +21,12 @@ function BiohackingPage() {
 
       <section className="px-4 py-14 sm:px-8 sm:py-20 lg:px-10">
         <div className="mx-auto max-w-7xl">
-          <div className="grid gap-4 lg:grid-cols-3">
-            {accessPoints.map((point) => (
-              <article
-                key={point.title}
-                className="border-t-4 border-[#f3b23c] bg-[#f7fbf4] p-5 sm:p-6"
-              >
-                <span className="text-sm font-black text-[#148a45]">
-                  {point.label}
-                </span>
-                <h2 className="mt-4 text-2xl font-black text-[#12351f]">
-                  {point.title}
-                </h2>
-                <p className="mt-3 text-sm leading-6 text-[#5f7165] sm:text-base sm:leading-7">
-                  {point.text}
-                </p>
-              </article>
-            ))}
+          <div className="fx-card overflow-hidden rounded-lg border border-[#dbe6d8] bg-white shadow-2xl shadow-green-950/10">
+            <img
+              src="/images/biohacking-access-cards.png"
+              alt="Biohacking aplicado a descanso, hidratacion y movimiento"
+              className="w-full object-cover"
+            />
           </div>
         </div>
       </section>
