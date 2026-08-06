@@ -30,12 +30,6 @@ function BiohackingPage() {
           <h1 className="mt-4 max-w-4xl text-5xl font-black leading-tight text-[#12351f] sm:text-6xl">
             Pequenos ajustes diarios para volver a sentir bienestar
           </h1>
-          <p className="mt-6 max-w-3xl text-lg leading-8 text-[#4f6656]">
-            Esta pagina funciona como contenido educativo para quienes llegan
-            buscando mejorar habitos antes de preguntar por un producto. La idea
-            es simple: observar descanso, hidratacion, movimiento y entorno, y
-            desde ahi recomendar una solucion Nipponflex cuando tenga sentido.
-          </p>
         </div>
       </section>
 

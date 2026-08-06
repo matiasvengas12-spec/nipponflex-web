@@ -38,11 +38,6 @@ function TechnologiesPage() {
           <h1 className="mt-4 max-w-4xl text-5xl font-black leading-tight sm:text-6xl">
             Explicar la tecnologia sin saturar ni prometer de mas
           </h1>
-          <p className="mt-6 max-w-3xl text-lg leading-8 text-[#d7e6d8]">
-            Esta pagina ordena los conceptos principales para que el visitante
-            entienda por que hay distintas familias de productos. El foco esta
-            en bienestar, confort, habitos y acompanamiento personalizado.
-          </p>
         </div>
       </section>
 

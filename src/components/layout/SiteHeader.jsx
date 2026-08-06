@@ -38,7 +38,7 @@ function SiteHeader() {
           rel="noopener noreferrer"
           className="inline-flex items-center justify-center rounded-md bg-[#148a45] px-4 py-2 text-sm font-bold text-white transition hover:bg-[#0f7338] focus:outline-none focus:ring-4 focus:ring-[#98d5ad]"
         >
-          WhatsApp
+          Solicitar asesoria
         </a>
       </div>
     </header>
