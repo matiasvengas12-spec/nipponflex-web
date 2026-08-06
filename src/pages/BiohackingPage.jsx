@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 const biohackingCards = [
   {
     number: '01',
@@ -19,7 +21,32 @@ const biohackingCards = [
   },
 ]
 
+const biohackingTopics = [
+  {
+    label: 'Descanso',
+    description:
+      'Trabajamos el descanso como base: recuperacion, confort y rutina nocturna.',
+  },
+  {
+    label: 'Agua',
+    description:
+      'La hidratacion es una entrada simple para mejorar habitos todos los dias.',
+  },
+  {
+    label: 'Movimiento',
+    description:
+      'Observamos postura, pisada y actividad diaria para acompanar mejor el cuerpo.',
+  },
+  {
+    label: 'Entorno',
+    description:
+      'El ambiente tambien importa: descanso, aire, agua y rutina tienen que convivir.',
+  },
+]
+
 function BiohackingPage() {
+  const [activeTopic, setActiveTopic] = useState(biohackingTopics[0])
+
   return (
     <main className="bg-white">
       <section className="bg-[#f7fbf4] px-4 py-10 sm:px-8 sm:py-14 lg:px-10">
@@ -29,20 +56,30 @@ function BiohackingPage() {
           </p>
           <div className="mt-5 rounded-full border border-[#0b3427] bg-[#064533] p-1.5 shadow-xl shadow-green-950/15">
             <div className="grid grid-cols-4 gap-1">
-              {['Descanso', 'Agua', 'Movimiento', 'Entorno'].map((item, index) => (
-                <span
-                  key={item}
-                  className={`min-w-0 rounded-full px-2 py-2 text-xs font-bold transition sm:px-4 sm:text-sm ${
-                    index === 0
-                      ? 'bg-[#d7bd72] text-[#12351f] shadow-md shadow-black/15'
-                      : 'text-white/80 hover:bg-white/10 hover:text-white'
-                  }`}
-                >
-                  {item}
-                </span>
-              ))}
+              {biohackingTopics.map((topic) => {
+                const isActive = activeTopic.label === topic.label
+
+                return (
+                  <button
+                    key={topic.label}
+                    type="button"
+                    aria-pressed={isActive}
+                    onClick={() => setActiveTopic(topic)}
+                    className={`min-w-0 rounded-full px-2 py-2 text-xs font-bold transition focus:outline-none focus:ring-2 focus:ring-[#d7bd72] focus:ring-offset-2 focus:ring-offset-[#064533] sm:px-4 sm:text-sm ${
+                      isActive
+                        ? 'bg-[#d7bd72] text-[#12351f] shadow-md shadow-black/15'
+                        : 'text-white/80 hover:bg-white/10 hover:text-white'
+                    }`}
+                  >
+                    {topic.label}
+                  </button>
+                )
+              })}
             </div>
           </div>
+          <p className="mx-auto mt-5 max-w-2xl rounded-lg border border-[#dbe6d8] bg-white/80 px-4 py-3 text-sm font-bold leading-6 text-[#38613c] shadow-sm sm:text-base">
+            {activeTopic.description}
+          </p>
         </div>
       </section>
 
