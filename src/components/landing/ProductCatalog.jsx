@@ -13,7 +13,7 @@ function ProductCatalog() {
             Catálogo consultivo
           </p>
           <h2 className="fx-reveal fx-reveal-delay-1 mt-3 text-3xl font-black leading-tight text-[#12351f] sm:text-5xl">
-            Productos Nipponflex destacados
+            Productos destacados
           </h2>
           <p className="fx-reveal fx-reveal-delay-2 mt-4 text-base leading-7 text-[#5f7165] sm:mt-5 sm:text-lg sm:leading-8">
             Esta primera selección replica los productos del catálogo de
