@@ -1,20 +1,26 @@
 function BiohackingPage() {
   return (
     <main className="bg-white">
-      <section className="bg-[#f7fbf4] px-4 py-12 sm:px-8 sm:py-18 lg:px-10">
-        <div className="mx-auto max-w-7xl">
-          <p className="text-sm font-black uppercase tracking-normal text-[#148a45]">
+      <section className="bg-[#f7fbf4] px-4 py-10 sm:px-8 sm:py-14 lg:px-10">
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="text-2xl font-black uppercase tracking-normal text-[#c0a35a] sm:text-3xl">
             Biohacking natural
           </p>
-          <div className="mt-7 flex flex-wrap gap-2">
-            {['Descanso', 'Agua', 'Movimiento', 'Entorno'].map((item) => (
-              <span
-                key={item}
-                className="rounded-full border border-[#c8dec4] bg-white px-4 py-2 text-sm font-bold text-[#38613c]"
-              >
-                {item}
-              </span>
-            ))}
+          <div className="mt-5 rounded-full border border-[#0b3427] bg-[#064533] p-1.5 shadow-xl shadow-green-950/15">
+            <div className="grid grid-cols-4 gap-1">
+              {['Descanso', 'Agua', 'Movimiento', 'Entorno'].map((item, index) => (
+                <span
+                  key={item}
+                  className={`min-w-0 rounded-full px-2 py-2 text-xs font-bold transition sm:px-4 sm:text-sm ${
+                    index === 0
+                      ? 'bg-[#d7bd72] text-[#12351f] shadow-md shadow-black/15'
+                      : 'text-white/80 hover:bg-white/10 hover:text-white'
+                  }`}
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </section>
