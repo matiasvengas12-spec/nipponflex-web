@@ -31,11 +31,40 @@ const biohackingCards = [
   },
 ]
 
+const processSteps = [
+  {
+    title: 'Observamos tu rutina',
+    text: 'Descanso, hidratación, movimiento y entorno cotidiano.',
+  },
+  {
+    title: 'Detectamos el punto de entrada',
+    text: 'Elegimos por dónde conviene empezar sin abrumar.',
+  },
+  {
+    title: 'Recomendamos simple',
+    text: 'Una sugerencia clara, aplicable y fácil de conversar.',
+  },
+]
+
 function BiohackingPage() {
   return (
     <main className="bg-white">
       <section className="bg-[#f7fbf4] px-4 py-14 sm:px-8 sm:py-20 lg:px-10">
         <div className="mx-auto max-w-7xl">
+          <div className="mx-auto mb-10 max-w-3xl text-center">
+            <p className="text-sm font-black uppercase tracking-normal text-[#c7ab54]">
+              Biohacking natural
+            </p>
+            <h1 className="mt-3 text-3xl font-black leading-tight text-[#12351f] sm:text-5xl">
+              Hábitos simples para leer mejor el cuerpo
+            </h1>
+            <p className="mt-4 text-base leading-7 text-[#5f7165] sm:text-lg sm:leading-8">
+              La idea no es sumar complejidad. Es ordenar descanso,
+              hidratación y movimiento para entender qué producto o tecnología
+              tiene más sentido en cada rutina.
+            </p>
+          </div>
+
           <div className="grid gap-4 md:grid-cols-3">
             {biohackingCards.map((card) => (
               <article
@@ -76,12 +105,34 @@ function BiohackingPage() {
                     href="/biohacking"
                     className="mt-auto inline-flex pt-5 text-sm font-medium text-[#777] underline underline-offset-4 transition hover:text-[#148a45]"
                   >
-                    Learn More
+                    Saber más
                   </a>
                 </div>
               </article>
             ))}
           </div>
+
+          <div className="mt-10 grid gap-3 rounded-lg border border-[#dbe6d8] bg-white/75 p-4 shadow-xl shadow-green-950/5 sm:p-5 lg:grid-cols-3">
+            {processSteps.map((step, index) => (
+              <div
+                key={step.title}
+                className="grid gap-3 border-[#dbe6d8] py-3 lg:border-l lg:pl-5 lg:first:border-l-0"
+              >
+                <span className="text-sm font-black text-[#c7ab54]">
+                  0{index + 1}
+                </span>
+                <h2 className="text-xl font-black text-[#12351f]">
+                  {step.title}
+                </h2>
+                <p className="text-sm leading-6 text-[#5f7165]">{step.text}</p>
+              </div>
+            ))}
+          </div>
+
+          <p className="mx-auto mt-7 max-w-3xl text-center text-sm font-bold leading-6 text-[#5f7165]">
+            Sin fórmulas mágicas ni compra impulsiva: primero entendemos el
+            caso, después elegimos un camino.
+          </p>
         </div>
       </section>
 
