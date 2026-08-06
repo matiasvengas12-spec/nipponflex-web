@@ -120,7 +120,7 @@ function TechnologiesPage() {
             <img
               src="/images/technology-mfp.png"
               alt="Magnetic FIR Power como sinergia de tecnologías Nipponflex"
-              className="min-h-[360px] w-full object-cover"
+              className="w-full object-contain sm:min-h-[360px] sm:object-cover"
             />
           </article>
         </div>
