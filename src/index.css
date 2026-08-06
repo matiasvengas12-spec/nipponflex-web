@@ -48,16 +48,6 @@ html {
   }
 }
 
-@keyframes fx-bridge-slide {
-  from {
-    transform: translateX(0);
-  }
-
-  to {
-    transform: translateX(-50%);
-  }
-}
-
 .fx-reveal {
   animation: fx-fade-up 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
@@ -76,10 +66,6 @@ html {
 
 .fx-soft-float {
   animation: fx-soft-float 7s ease-in-out infinite;
-}
-
-.fx-bridge-track {
-  animation: fx-bridge-slide 18s linear infinite;
 }
 
 .fx-card {

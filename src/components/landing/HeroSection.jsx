@@ -73,32 +73,15 @@ function HeroSection() {
           </div>
         </div>
       </div>
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-white/70" />
-      <div className="relative z-10 mx-auto -mt-5 max-w-7xl px-4 pb-7 sm:px-8 lg:px-10">
-        <div className="overflow-hidden rounded-lg border border-[#dbe6d8] bg-white/95 shadow-xl shadow-green-950/10 backdrop-blur">
-          <div className="fx-bridge-track flex w-max items-center gap-3 px-4 py-3">
-            {[
-              'Descanso',
-              'Hidratacion',
-              'Movimiento',
-              'Biohacking',
-              'Asesoria',
-              'Descanso',
-              'Hidratacion',
-              'Movimiento',
-              'Biohacking',
-              'Asesoria',
-            ].map((item, index) => (
-              <span
-                key={`${item}-${index}`}
-                className="inline-flex items-center gap-3 whitespace-nowrap rounded-full border border-[#dbe6d8] bg-[#f7fbf4] px-4 py-2 text-xs font-black uppercase tracking-normal text-[#38613c]"
-              >
-                {item}
-                <span className="h-1.5 w-1.5 rounded-full bg-[#f3b23c]" />
-              </span>
-            ))}
-          </div>
-        </div>
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent via-[#f7fbf4]/80 to-white" />
+      <div className="relative z-10 mx-auto -mt-6 flex max-w-7xl justify-center px-4 pb-8 sm:px-8 lg:px-10">
+        <a
+          href="#biohacking"
+          aria-label="Bajar a biohacking"
+          className="group pointer-events-auto flex h-12 w-8 items-start justify-center rounded-full border border-[#c8dec4] bg-white/90 p-1.5 shadow-lg shadow-green-950/10 backdrop-blur transition hover:-translate-y-0.5 hover:border-[#148a45] focus:outline-none focus:ring-4 focus:ring-[#d9ebd6]"
+        >
+          <span className="h-2 w-2 rounded-full bg-[#148a45] transition group-hover:translate-y-4" />
+        </a>
       </div>
     </section>
   )

@@ -27,7 +27,10 @@ const biohackingPillars = [
 
 function BiohackingSection() {
   return (
-    <section className="bg-[#f7fbf4] px-4 py-14 sm:px-8 sm:py-20 lg:px-10">
+    <section
+      id="biohacking"
+      className="bg-[#f7fbf4] px-4 py-14 sm:px-8 sm:py-20 lg:px-10"
+    >
       <div className="mx-auto max-w-7xl">
         <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
           <div>
