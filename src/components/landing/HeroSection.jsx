@@ -1,41 +1,6 @@
-import { useEffect, useRef, useState } from 'react'
 import { buildWhatsAppUrl } from '../../config/contact'
 
-const lifestyleCards = [
-  {
-    title: 'Estrés Moderno',
-    image: '/images/home-modern-stress.png',
-    alt: 'Persona usando el celular en una ciudad con ondas de estrés moderno',
-  },
-  {
-    title: 'Equilibrio Natural',
-    image: '/images/home-natural-balance.png',
-    alt: 'Persona meditando en la naturaleza con ondas de equilibrio natural',
-  },
-]
-
 function HeroSection() {
-  const visionRef = useRef(null)
-  const [isVisionVisible, setIsVisionVisible] = useState(false)
-
-  useEffect(() => {
-    const target = visionRef.current
-    if (!target) return undefined
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry.isIntersecting) return
-        setIsVisionVisible(true)
-        observer.disconnect()
-      },
-      { rootMargin: '0px 0px -18% 0px', threshold: 0.2 },
-    )
-
-    observer.observe(target)
-
-    return () => observer.disconnect()
-  }, [])
-
   return (
     <section className="relative isolate min-h-[680px] overflow-hidden bg-[#0b1f17] sm:min-h-[760px] lg:min-h-[calc(100svh-72px)]">
       <img
@@ -55,39 +20,6 @@ function HeroSection() {
             <span>Biohacking, descanso e hidratación</span>
             <span> con tecnología Nipponflex</span>
           </h1>
-
-          <div
-            ref={visionRef}
-            className={`fx-scroll-reveal mt-9 max-w-5xl rounded-lg border border-[#c7ab54]/45 bg-[#061811]/72 p-4 shadow-2xl shadow-black/30 backdrop-blur sm:mt-10 sm:p-6 ${isVisionVisible ? 'is-visible' : ''}`}
-          >
-            <div className="text-center">
-              <p className="text-2xl font-black leading-tight text-[#c7ab54] sm:text-4xl">
-                Disconexión con la Naturaleza:
-              </p>
-              <p className="mt-1 text-2xl font-black leading-tight text-white sm:text-4xl">
-                El impacto del estilo de vida moderno
-              </p>
-            </div>
-
-            <div className="mt-7 grid gap-4 md:grid-cols-2">
-              {lifestyleCards.map((card, index) => (
-                <article
-                  key={card.title}
-                  className="fx-scroll-card rounded-lg border border-[#c7ab54]/55 bg-[#0b261c]/82 p-3 shadow-xl shadow-black/25"
-                  style={{ transitionDelay: `${index * 140}ms` }}
-                >
-                  <img
-                    src={card.image}
-                    alt={card.alt}
-                    className="aspect-square w-full rounded-md object-cover"
-                  />
-                  <h2 className="px-2 py-4 text-center text-2xl font-black leading-tight text-white sm:text-3xl">
-                    {card.title}
-                  </h2>
-                </article>
-              ))}
-            </div>
-          </div>
 
           <p className="fx-reveal fx-reveal-delay-2 mt-6 max-w-3xl text-base leading-7 text-white/90 sm:text-xl sm:leading-8">
             Te ayudamos a elegir productos con tecnología FIR Power, Ion Ball y
