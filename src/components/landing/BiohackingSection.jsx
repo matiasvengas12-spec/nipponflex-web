@@ -18,7 +18,7 @@ const biohackingBenefits = [
     ],
   },
   {
-    title: 'Vitalidad en Movimiento',
+    title: 'Movimiento',
     image: '/images/biohacking-benefit-movimiento.png',
     points: [
       'Postura y equilibrio mejorados',
@@ -36,7 +36,7 @@ function BiohackingSection() {
     >
       <div className="mx-auto max-w-7xl">
         <div className="rounded-lg bg-[radial-gradient(circle_at_25%_10%,#ffffff_0,#eef7f1_35%,#cfdad6_100%)] px-4 py-10 shadow-2xl shadow-green-950/10 sm:px-8 lg:px-10">
-          <h2 className="fx-reveal mx-auto max-w-4xl text-center text-3xl font-black leading-tight text-[#12351f] sm:text-5xl">
+          <h2 className="fx-reveal mx-auto max-w-none text-center text-3xl font-black leading-tight text-[#12351f] sm:text-4xl lg:whitespace-nowrap xl:text-5xl">
             Biohacking aplicado a habitos simples
           </h2>
 
@@ -64,7 +64,7 @@ function BiohackingSection() {
                   />
 
                   <div className="flex flex-1 flex-col pt-6">
-                    <h3 className="text-2xl font-black leading-tight text-[#12351f]">
+                    <h3 className="whitespace-nowrap text-xl font-black leading-tight text-[#12351f] xl:text-2xl">
                       {benefit.title}
                     </h3>
 
