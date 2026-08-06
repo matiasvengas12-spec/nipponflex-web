@@ -9,11 +9,11 @@ function FloatingWhatsApp() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Enviar mensaje por WhatsApp"
-      className="fixed bottom-5 right-5 z-50 inline-flex h-16 w-16 items-center justify-center rounded-full bg-[#25d366] text-white shadow-2xl shadow-green-950/30 transition hover:-translate-y-1 hover:bg-[#1ebe5d] focus:outline-none focus:ring-4 focus:ring-[#a8efc1]"
+      className="fixed bottom-4 right-4 z-50 inline-flex h-14 w-14 items-center justify-center rounded-full bg-[#25d366] text-white shadow-2xl shadow-green-950/30 transition hover:-translate-y-1 hover:bg-[#1ebe5d] focus:outline-none focus:ring-4 focus:ring-[#a8efc1] sm:bottom-5 sm:right-5 sm:h-16 sm:w-16"
     >
       <svg
         aria-hidden="true"
-        className="h-8 w-8"
+        className="h-7 w-7 sm:h-8 sm:w-8"
         viewBox="0 0 24 24"
         fill="currentColor"
       >

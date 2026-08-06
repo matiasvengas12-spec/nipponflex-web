@@ -17,9 +17,9 @@ function SiteFooter() {
   )
 
   return (
-    <footer className="bg-[#101c16] px-5 py-14 text-white sm:px-8 lg:px-10">
+    <footer className="bg-[#101c16] px-4 py-12 text-white sm:px-8 sm:py-14 lg:px-10">
       <div className="mx-auto max-w-7xl">
-        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-[1.2fr_0.8fr_0.9fr_1fr]">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-[1.2fr_0.8fr_0.9fr_1fr] lg:gap-10">
           <div>
             <p className="text-xl font-black">Vida Plena Nipponflex</p>
             <p className="mt-4 max-w-sm text-sm leading-7 text-[#b8c8be]">
@@ -93,7 +93,7 @@ function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-2 border-t border-white/10 pt-6 text-xs text-[#93a79b] sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-10 flex flex-col gap-2 border-t border-white/10 pt-6 text-xs leading-5 text-[#93a79b] sm:mt-12 sm:flex-row sm:items-center sm:justify-between">
           <span>© 2026 Vida Plena Nipponflex. Todos los derechos reservados.</span>
           <span>Distribuidor independiente Nipponflex</span>
         </div>

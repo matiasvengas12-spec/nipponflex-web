@@ -30,28 +30,28 @@ const technologies = [
 function TechnologiesPage() {
   return (
     <main className="bg-white">
-      <section className="bg-[#12351f] px-5 py-20 text-white sm:px-8 lg:px-10">
+      <section className="bg-[#12351f] px-4 py-14 text-white sm:px-8 sm:py-20 lg:px-10">
         <div className="mx-auto max-w-7xl">
           <p className="text-sm font-black uppercase tracking-normal text-[#f3b23c]">
             Tecnologias Nipponflex
           </p>
-          <h1 className="mt-4 max-w-4xl text-5xl font-black leading-tight sm:text-6xl">
+          <h1 className="mt-4 max-w-4xl text-4xl font-black leading-tight sm:text-6xl">
             Explicar la tecnologia sin saturar ni prometer de mas
           </h1>
         </div>
       </section>
 
-      <section className="px-5 py-20 sm:px-8 lg:px-10">
-        <div className="mx-auto grid max-w-7xl gap-5 md:grid-cols-2">
+      <section className="px-4 py-14 sm:px-8 sm:py-20 lg:px-10">
+        <div className="mx-auto grid max-w-7xl gap-4 md:grid-cols-2 md:gap-5">
           {technologies.map((tech) => (
             <article
               key={tech.name}
-              className="rounded-lg border border-[#dbe6d8] bg-[#f7fbf4] p-6"
+              className="rounded-lg border border-[#dbe6d8] bg-[#f7fbf4] p-4 sm:p-6"
             >
-              <h2 className="text-3xl font-black text-[#12351f]">
+              <h2 className="text-2xl font-black text-[#12351f] sm:text-3xl">
                 {tech.name}
               </h2>
-              <p className="mt-4 text-base leading-7 text-[#5f7165]">
+              <p className="mt-3 text-sm leading-6 text-[#5f7165] sm:mt-4 sm:text-base sm:leading-7">
                 {tech.summary}
               </p>
               <div className="mt-5 flex flex-wrap gap-2">
@@ -69,13 +69,13 @@ function TechnologiesPage() {
         </div>
       </section>
 
-      <section className="bg-[#f7fbf4] px-5 py-16 sm:px-8 lg:px-10">
+      <section className="bg-[#f7fbf4] px-4 py-12 sm:px-8 sm:py-16 lg:px-10">
         <div className="mx-auto flex max-w-7xl flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-sm font-black uppercase tracking-normal text-[#148a45]">
               Asesoria
             </p>
-            <h2 className="mt-2 text-3xl font-black text-[#12351f]">
+            <h2 className="mt-2 text-2xl font-black text-[#12351f] sm:text-3xl">
               Elegir tecnologia segun la necesidad
             </h2>
           </div>
@@ -85,7 +85,7 @@ function TechnologiesPage() {
             )}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center rounded-md bg-[#148a45] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#0f7338] focus:outline-none focus:ring-4 focus:ring-[#98d5ad]"
+            className="inline-flex w-full items-center justify-center rounded-md bg-[#148a45] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#0f7338] focus:outline-none focus:ring-4 focus:ring-[#98d5ad] sm:w-auto"
           >
             Hablar por WhatsApp
           </a>

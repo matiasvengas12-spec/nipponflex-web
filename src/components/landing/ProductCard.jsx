@@ -10,17 +10,17 @@ function ProductCard({ product }) {
           className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
         />
       </div>
-      <div className="flex flex-1 flex-col p-5">
-        <p className="text-sm font-bold uppercase tracking-normal text-[#2b6777]">
+      <div className="flex flex-1 flex-col p-4 sm:p-5">
+        <p className="text-xs font-bold uppercase tracking-normal text-[#2b6777] sm:text-sm">
           {product.category}
         </p>
-        <h3 className="mt-2 text-2xl font-black leading-7 text-[#12351f]">
+        <h3 className="mt-2 text-xl font-black leading-7 text-[#12351f] sm:text-2xl">
           {product.name}
         </h3>
-        <p className="mt-3 flex-1 text-base leading-7 text-[#5f7165]">
+        <p className="mt-2 flex-1 text-sm leading-6 text-[#5f7165] sm:mt-3 sm:text-base sm:leading-7">
           {product.description}
         </p>
-        <div className="mt-5 flex flex-wrap gap-2">
+        <div className="mt-4 flex flex-wrap gap-2 sm:mt-5">
           {product.highlights.map((highlight) => (
             <span
               key={highlight}
@@ -36,7 +36,7 @@ function ProductCard({ product }) {
           )}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-6 inline-flex w-full items-center justify-center rounded-md bg-[#12351f] px-4 py-3 text-sm font-bold text-white transition hover:bg-[#148a45] focus:outline-none focus:ring-4 focus:ring-[#badfc6]"
+          className="mt-5 inline-flex w-full items-center justify-center rounded-md bg-[#12351f] px-4 py-3 text-sm font-bold text-white transition hover:bg-[#148a45] focus:outline-none focus:ring-4 focus:ring-[#badfc6] sm:mt-6"
         >
           Consultar por WhatsApp
         </a>
