@@ -1,8 +1,4 @@
-import {
-  INSTAGRAM_HANDLE,
-  INSTAGRAM_URL,
-  buildWhatsAppUrl,
-} from '../../config/contact'
+import { buildWhatsAppUrl } from '../../config/contact'
 
 function HeroSection() {
   return (
@@ -22,15 +18,6 @@ function HeroSection() {
             biohacking como punto de partida: hábitos simples, agua, descanso y
             bienestar medible en la vida cotidiana.
           </p>
-
-          <a
-            href={INSTAGRAM_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-5 inline-flex text-sm font-bold text-[#2b6777] transition hover:text-[#148a45] focus:outline-none focus:ring-4 focus:ring-[#d9ebd6]"
-          >
-            Seguinos en Instagram {INSTAGRAM_HANDLE}
-          </a>
 
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
             <a
