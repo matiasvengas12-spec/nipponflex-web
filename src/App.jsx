@@ -3,6 +3,7 @@ import LandingPage from './components/landing/LandingPage'
 import SiteFooter from './components/layout/SiteFooter'
 import SiteHeader from './components/layout/SiteHeader'
 import BiohackingPage from './pages/BiohackingPage'
+import DistributorsPage from './pages/DistributorsPage'
 import TechnologiesPage from './pages/TechnologiesPage'
 
 function App() {
@@ -12,7 +13,9 @@ function App() {
       ? BiohackingPage
       : path === '/tecnologias'
         ? TechnologiesPage
-        : LandingPage
+        : path === '/distribuidores'
+          ? DistributorsPage
+          : LandingPage
 
   useEffect(() => {
     if (!window.location.hash) return

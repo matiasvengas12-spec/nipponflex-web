@@ -16,7 +16,7 @@ function HeroSection() {
           <p className="fx-reveal text-sm font-black uppercase tracking-normal text-white/90 sm:text-lg">
             Bienestar que se siente, tecnología que se demuestra
           </p>
-          <h1 className="fx-reveal fx-reveal-delay-1 mt-4 text-4xl font-black leading-[1.05] tracking-normal sm:text-6xl lg:text-7xl">
+          <h1 className="fx-reveal fx-reveal-delay-1 mt-4 hidden text-4xl font-black leading-[1.05] tracking-normal sm:block sm:text-6xl lg:text-7xl">
             <span>Biohacking, descanso e hidratación</span>
             <span className="hidden sm:inline"> con tecnología Nipponflex</span>
           </h1>
