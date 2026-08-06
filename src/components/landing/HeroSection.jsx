@@ -13,12 +13,12 @@ function HeroSection() {
 
       <div className="relative z-10 mx-auto flex min-h-[680px] max-w-7xl items-center px-4 py-20 sm:min-h-[760px] sm:px-8 lg:min-h-[calc(100svh-72px)] lg:px-10">
         <div className="max-w-4xl text-white">
-          <p className="fx-reveal text-sm font-black uppercase tracking-normal text-white/90 sm:text-lg">
+          <p className="fx-reveal hidden text-sm font-black uppercase tracking-normal text-white/90 sm:block sm:text-lg">
             Bienestar que se siente, tecnología que se demuestra
           </p>
-          <h1 className="fx-reveal fx-reveal-delay-1 mt-4 hidden text-4xl font-black leading-[1.05] tracking-normal sm:block sm:text-6xl lg:text-7xl">
+          <h1 className="fx-reveal fx-reveal-delay-1 text-4xl font-black leading-[1.05] tracking-normal sm:mt-4 sm:text-6xl lg:text-7xl">
             <span>Biohacking, descanso e hidratación</span>
-            <span className="hidden sm:inline"> con tecnología Nipponflex</span>
+            <span> con tecnología Nipponflex</span>
           </h1>
           <p className="fx-reveal fx-reveal-delay-2 mt-6 max-w-3xl text-base leading-7 text-white/90 sm:text-xl sm:leading-8">
             Te ayudamos a elegir productos con tecnología FIR Power, Ion Ball y
