@@ -1,3 +1,4 @@
+import FloatingWhatsApp from './FloatingWhatsApp'
 import HeroSection from './HeroSection'
 import ProductCatalog from './ProductCatalog'
 
@@ -6,6 +7,7 @@ function LandingPage() {
     <main>
       <HeroSection />
       <ProductCatalog />
+      <FloatingWhatsApp />
     </main>
   )
 }

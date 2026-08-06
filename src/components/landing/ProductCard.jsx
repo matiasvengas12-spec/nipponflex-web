@@ -1,3 +1,5 @@
+import { buildWhatsAppUrl } from '../../config/contact'
+
 function ProductCard({ product }) {
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-lg border border-[#dbe6d8] bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl hover:shadow-green-950/10">
@@ -28,12 +30,16 @@ function ProductCard({ product }) {
             </span>
           ))}
         </div>
-        <button
-          type="button"
+        <a
+          href={buildWhatsAppUrl(
+            `Hola, quiero consultar por el producto ${product.name}.`,
+          )}
+          target="_blank"
+          rel="noopener noreferrer"
           className="mt-6 inline-flex w-full items-center justify-center rounded-md bg-[#12351f] px-4 py-3 text-sm font-bold text-white transition hover:bg-[#148a45] focus:outline-none focus:ring-4 focus:ring-[#badfc6]"
         >
           Consultar por WhatsApp
-        </button>
+        </a>
       </div>
     </article>
   )

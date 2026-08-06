@@ -1,3 +1,5 @@
+import { buildWhatsAppUrl } from '../../config/contact'
+
 function HeroSection() {
   return (
     <section className="relative isolate overflow-hidden bg-[#f7fbf4]">
@@ -19,7 +21,11 @@ function HeroSection() {
 
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
             <a
-              href="#catalogo"
+              href={buildWhatsAppUrl(
+                'Hola, quiero solicitar una asesoria gratuita sobre productos Nipponflex.',
+              )}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center justify-center rounded-md bg-[#148a45] px-6 py-4 text-base font-bold text-white shadow-lg shadow-green-900/15 transition hover:bg-[#0f7338] focus:outline-none focus:ring-4 focus:ring-[#98d5ad]"
             >
               Solicitar Asesoría Gratuita
