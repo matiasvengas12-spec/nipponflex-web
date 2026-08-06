@@ -59,9 +59,10 @@ function BiohackingPage() {
               Hábitos simples para leer mejor el cuerpo
             </h1>
             <p className="mt-4 text-base leading-7 text-[#5f7165] sm:text-lg sm:leading-8">
-              La idea no es sumar complejidad. Es ordenar descanso,
-              hidratación y movimiento para entender qué producto o tecnología
-              tiene más sentido en cada rutina.
+              Biohacking es observar cómo responde tu cuerpo a lo que hacés
+              todos los días: dormir, hidratarte, moverte y descansar. Desde
+              ahí ajustamos hábitos simples y elegimos herramientas que tengan
+              sentido para tu rutina.
             </p>
           </div>
 
