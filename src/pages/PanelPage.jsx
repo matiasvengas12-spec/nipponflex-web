@@ -18,36 +18,36 @@ const statuses = [
   {
     id: 'primer-contacto',
     label: 'Primer contacto',
-    color: 'bg-sky-50 text-sky-800 ring-sky-200',
-    dot: 'bg-sky-500',
+    color: 'bg-sky-500/10 text-sky-400 border-sky-500/20',
+    dot: 'bg-sky-400',
     icon: MessageCircle,
   },
   {
     id: 'segundo-contacto',
     label: 'Segundo contacto',
-    color: 'bg-indigo-50 text-indigo-800 ring-indigo-200',
-    dot: 'bg-indigo-500',
+    color: 'bg-indigo-500/10 text-indigo-400 border-indigo-500/20',
+    dot: 'bg-indigo-400',
     icon: Clock3,
   },
   {
     id: 'primer-compra',
     label: 'Primer compra',
-    color: 'bg-amber-50 text-amber-900 ring-amber-200',
-    dot: 'bg-amber-500',
+    color: 'bg-amber-500/10 text-amber-400 border-amber-500/20',
+    dot: 'bg-amber-400',
     icon: ShoppingBag,
   },
   {
     id: 'reunion-pendiente',
-    label: 'Reunion pendiente',
-    color: 'bg-rose-50 text-rose-800 ring-rose-200',
-    dot: 'bg-rose-500',
+    label: 'Reunión pendiente',
+    color: 'bg-rose-500/10 text-rose-400 border-rose-500/20',
+    dot: 'bg-rose-400',
     icon: CalendarDays,
   },
   {
     id: 'nipponflex-fan',
     label: 'Nipponflex fan',
-    color: 'bg-emerald-50 text-emerald-800 ring-emerald-200',
-    dot: 'bg-emerald-500',
+    color: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
+    dot: 'bg-emerald-400',
     icon: Heart,
   },
 ]
@@ -58,14 +58,14 @@ const initialClients = [
     name: 'Mariana Costa',
     phone: '+54 9 11 5248-9031',
     source: 'Instagram',
-    product: 'Colchon FIR Power',
+    product: 'Colchón FIR Power',
     status: 'reunion-pendiente',
     contactDate: '2026-08-07',
     lastContactDate: '2026-08-07',
     nextActionDate: '2026-08-09',
     owner: 'Alejandro',
     situation:
-      'Pidio asesoramiento para cambiar colchon. Quiere comparar firmeza, garantia y financiacion antes de reservar reunion.',
+      'Pidió asesoramiento para cambiar colchón. Quiere comparar firmeza, garantía y financiación antes de reservar reunión.',
     value: 980000,
   },
   {
@@ -78,14 +78,14 @@ const initialClients = [
     contactDate: '2026-08-06',
     lastContactDate: '2026-08-07',
     nextActionDate: '2026-08-08',
-    owner: 'Sofia',
+    owner: 'Sofía',
     situation:
-      'Ya recibio catalogo. Falta enviar comparativa entre kit familiar y opcion premium para cerrar dudas.',
+      'Ya recibió catálogo. Falta enviar comparativa entre kit familiar y opción premium para cerrar dudas.',
     value: 420000,
   },
   {
     id: 3,
-    name: 'Claudia Mendez',
+    name: 'Claudia Méndez',
     phone: '+54 9 11 3904-2208',
     source: 'Referido',
     product: 'Purificador Ion Ball',
@@ -103,7 +103,7 @@ const initialClients = [
     name: 'Pablo Sosa',
     phone: '+54 9 11 7114-0038',
     source: 'Formulario web',
-    product: 'Almohadas magneticas',
+    product: 'Almohadas magnéticas',
     status: 'primer-contacto',
     contactDate: '2026-08-07',
     lastContactDate: '2026-08-07',
@@ -123,7 +123,7 @@ const initialClients = [
     contactDate: '2026-07-22',
     lastContactDate: '2026-08-04',
     nextActionDate: '2026-08-20',
-    owner: 'Sofia',
+    owner: 'Sofía',
     situation:
       'Compra recurrente y recomienda contactos. Ideal para programa de referidos y contenido testimonial.',
     value: 1280000,
@@ -140,7 +140,7 @@ const initialClients = [
     nextActionDate: '2026-08-10',
     owner: 'Mica',
     situation:
-      'Interesado por recuperacion muscular. Reunion pendiente con demostracion corta y opcion de combo.',
+      'Interesado por recuperación muscular. Reunión pendiente con demostración corta y opción de combo.',
     value: 360000,
   },
 ]
@@ -187,8 +187,8 @@ function StatusBadge({ statusId }) {
   const status = getStatus(statusId)
 
   return (
-    <span className={`inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-bold ring-1 ${status.color}`}>
-      <span className={`h-2 w-2 rounded-full ${status.dot}`} />
+    <span className={`inline-flex items-center gap-2 rounded-full px-2.5 py-1 text-xs font-semibold border ${status.color}`}>
+      <span className={`h-1.5 w-1.5 rounded-full ${status.dot}`} />
       {status.label}
     </span>
   )
@@ -276,65 +276,71 @@ function PanelPage() {
   }
 
   return (
-    <main className="min-h-screen bg-[#f4f7f2] text-[#17231b]">
-      <header className="border-b border-[#dfe8dc] bg-white">
-        <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-5 sm:px-6 lg:px-8">
+    <main className="min-h-screen bg-black text-gray-200 selection:bg-emerald-500/30 overflow-x-hidden pb-12">
+      {/* Background glow effects */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-emerald-900/20 rounded-full blur-[120px] mix-blend-screen opacity-50" />
+        <div className="absolute top-[20%] right-[-10%] w-[400px] h-[400px] bg-indigo-900/20 rounded-full blur-[120px] mix-blend-screen opacity-30" />
+      </div>
+
+      <header className="relative z-10 border-b border-white/10 bg-black/50 backdrop-blur-xl">
+        <div className="mx-auto flex max-w-7xl flex-col gap-6 px-4 py-6 sm:px-6 lg:px-8">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div>
-              <p className="text-xs font-black uppercase tracking-normal text-[#148a45]">Panel privado demo</p>
-              <h1 className="mt-1 text-2xl font-black tracking-normal text-[#17231b] sm:text-3xl">
-                CRM Vidasanasm Nipponflex
+              <p className="text-xs font-black uppercase tracking-widest text-emerald-400">Panel privado demo</p>
+              <h1 className="mt-1 text-2xl font-black tracking-tight text-white sm:text-3xl">
+                CRM Vida Plena Nipponflex
               </h1>
             </div>
 
-            <div className="flex flex-wrap gap-2">
-              <button
-                type="button"
-                onClick={addClient}
-                className="inline-flex items-center justify-center gap-2 rounded-md bg-[#148a45] px-4 py-2.5 text-sm font-bold text-white transition hover:bg-[#0f7338]"
-              >
-                <Plus className="h-4 w-4" />
-                Nuevo cliente
-              </button>
+            <div className="flex flex-wrap gap-3">
               <button
                 type="button"
                 onClick={resetDemo}
-                className="inline-flex items-center justify-center gap-2 rounded-md border border-[#cbd8c8] bg-white px-4 py-2.5 text-sm font-bold text-[#334238] transition hover:bg-[#eef5ec]"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-2 text-sm font-semibold text-gray-300 transition hover:bg-white/10 hover:text-white"
               >
                 <RotateCcw className="h-4 w-4" />
                 Reset demo
               </button>
+              <button
+                type="button"
+                onClick={addClient}
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-5 py-2 text-sm font-bold text-black transition hover:scale-105 hover:bg-gray-100"
+              >
+                <Plus className="h-4 w-4" />
+                Nuevo cliente
+              </button>
             </div>
           </div>
 
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <Metric icon={Users} label="Clientes" value={totals.clients} />
-            <Metric icon={Clock3} label="Reuniones pendientes" value={totals.pending} />
+            <Metric icon={Clock3} label="Reuniones" value={totals.pending} />
             <Metric icon={Heart} label="Fans" value={totals.fans} />
             <Metric icon={ShoppingBag} label="Oportunidad" value={formatCurrency(totals.opportunity)} />
           </div>
         </div>
       </header>
 
-      <section className="mx-auto grid max-w-7xl gap-4 px-4 py-5 sm:px-6 lg:grid-cols-[1.55fr_0.9fr] lg:px-8">
-        <div className="min-w-0 rounded-lg border border-[#dfe8dc] bg-white">
-          <div className="flex flex-col gap-3 border-b border-[#e5ede2] p-4 lg:flex-row lg:items-center">
+      <section className="relative z-10 mx-auto grid max-w-7xl gap-6 px-4 py-8 sm:px-6 lg:grid-cols-[1.55fr_0.9fr] lg:px-8">
+        <div className="min-w-0 rounded-2xl border border-white/10 bg-[#0a0a0a]/80 backdrop-blur-md overflow-hidden">
+          <div className="flex flex-col gap-4 border-b border-white/10 p-5 lg:flex-row lg:items-center">
             <label className="relative flex-1">
-              <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#667568]" />
+              <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />
               <input
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
-                placeholder="Buscar cliente, producto, telefono o situacion"
-                className="h-11 w-full rounded-md border border-[#cbd8c8] bg-white pl-10 pr-3 text-sm font-medium outline-none transition focus:border-[#148a45] focus:ring-4 focus:ring-[#148a45]/10"
+                placeholder="Buscar cliente, producto o situación..."
+                className="w-full h-11 rounded-xl border border-white/10 bg-black/50 pl-11 pr-4 text-sm text-gray-200 placeholder-gray-500 outline-none transition focus:border-emerald-500/50 focus:bg-black focus:ring-1 focus:ring-emerald-500/50"
               />
             </label>
 
-            <label className="relative w-full lg:w-60">
-              <Filter className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#667568]" />
+            <label className="relative w-full lg:w-64">
+              <Filter className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />
               <select
                 value={statusFilter}
                 onChange={(event) => setStatusFilter(event.target.value)}
-                className="h-11 w-full appearance-none rounded-md border border-[#cbd8c8] bg-white pl-10 pr-3 text-sm font-bold outline-none transition focus:border-[#148a45] focus:ring-4 focus:ring-[#148a45]/10"
+                className="w-full h-11 appearance-none rounded-xl border border-white/10 bg-black/50 pl-11 pr-4 text-sm font-semibold text-gray-200 outline-none transition focus:border-emerald-500/50 focus:bg-black focus:ring-1 focus:ring-emerald-500/50"
               >
                 <option value="todos">Todos los estados</option>
                 {statuses.map((status) => (
@@ -348,64 +354,69 @@ function PanelPage() {
 
           <div className="overflow-x-auto">
             <table className="w-full min-w-[880px] text-left text-sm">
-              <thead className="border-b border-[#e5ede2] bg-[#f8fbf6] text-xs font-black uppercase tracking-normal text-[#667568]">
+              <thead className="border-b border-white/10 bg-white/5 text-xs font-bold uppercase tracking-widest text-gray-400">
                 <tr>
-                  <th className="px-4 py-3">Cliente</th>
-                  <th className="px-4 py-3">Estado</th>
-                  <th className="px-4 py-3">Contacto actual</th>
-                  <th className="px-4 py-3">Proxima accion</th>
-                  <th className="px-4 py-3">Producto</th>
-                  <th className="px-4 py-3 text-right">Valor</th>
+                  <th className="px-6 py-4">Cliente</th>
+                  <th className="px-6 py-4">Estado</th>
+                  <th className="px-6 py-4">Contacto</th>
+                  <th className="px-6 py-4">Próxima acción</th>
+                  <th className="px-6 py-4 text-right">Valor</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-[#edf2ea]">
+              <tbody className="divide-y divide-white/5">
                 {filteredClients.map((client) => (
                   <tr
                     key={client.id}
                     onClick={() => setActiveId(client.id)}
-                    className={`cursor-pointer transition hover:bg-[#f8fbf6] ${
-                      activeClient?.id === client.id ? 'bg-emerald-50/70' : ''
+                    className={`cursor-pointer transition-colors hover:bg-white/5 ${
+                      activeClient?.id === client.id ? 'bg-white/5' : ''
                     }`}
                   >
-                    <td className="px-4 py-4">
-                      <div className="font-black text-[#17231b]">{client.name}</div>
-                      <div className="mt-1 text-xs font-medium text-[#667568]">{client.phone}</div>
+                    <td className="px-6 py-4">
+                      <div className="font-bold text-white">{client.name}</div>
+                      <div className="mt-1 text-xs font-medium text-gray-500">{client.product}</div>
                     </td>
-                    <td className="px-4 py-4">
+                    <td className="px-6 py-4">
                       <StatusBadge statusId={client.status} />
                     </td>
-                    <td className="px-4 py-4 font-bold text-[#334238]">
-                      {formatDate(client.lastContactDate)}
-                      <span className="block text-xs font-medium text-[#7a897d]">
-                        hace {daysBetween(client.lastContactDate)} dias
+                    <td className="px-6 py-4 text-gray-300">
+                      <span className="font-semibold">{formatDate(client.lastContactDate)}</span>
+                      <span className="ml-2 inline-block rounded-full bg-white/5 px-2 py-0.5 text-[10px] font-bold text-gray-400">
+                        hace {daysBetween(client.lastContactDate)}d
                       </span>
                     </td>
-                    <td className="px-4 py-4 font-bold text-[#334238]">{formatDate(client.nextActionDate)}</td>
-                    <td className="px-4 py-4 text-[#334238]">{client.product}</td>
-                    <td className="px-4 py-4 text-right font-black text-[#17231b]">{formatCurrency(client.value)}</td>
+                    <td className="px-6 py-4 font-semibold text-gray-300">{formatDate(client.nextActionDate)}</td>
+                    <td className="px-6 py-4 text-right font-black text-white">{formatCurrency(client.value)}</td>
                   </tr>
                 ))}
+                {filteredClients.length === 0 && (
+                  <tr>
+                    <td colSpan={5} className="py-12 text-center text-sm font-medium text-gray-500">
+                      No se encontraron clientes que coincidan con la búsqueda.
+                    </td>
+                  </tr>
+                )}
               </tbody>
             </table>
           </div>
         </div>
 
         {activeClient && (
-          <aside className="rounded-lg border border-[#dfe8dc] bg-white p-4">
-            <div className="flex items-start justify-between gap-3">
+          <aside className="rounded-2xl border border-white/10 bg-[#0a0a0a]/80 backdrop-blur-md p-6 h-fit">
+            <div className="flex items-start justify-between gap-4 mb-6 pb-6 border-b border-white/10">
               <div>
-                <p className="text-xs font-black uppercase tracking-normal text-[#667568]">Situacion actual</p>
-                <h2 className="mt-1 text-xl font-black text-[#17231b]">{activeClient.name}</h2>
+                <p className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-1">Ficha de cliente</p>
+                <h2 className="text-2xl font-black text-white tracking-tight">{activeClient.name}</h2>
               </div>
               <StatusBadge statusId={activeClient.status} />
             </div>
 
-            <div className="mt-5 grid gap-3">
+            <div className="grid gap-5">
               <Field label="Nombre">
                 <input
                   value={activeClient.name}
                   onChange={(event) => updateClient(activeClient.id, 'name', event.target.value)}
-                  className="field-input"
+                  className="w-full rounded-xl border border-white/10 bg-black/50 px-4 py-2.5 text-sm text-gray-200 outline-none transition focus:border-emerald-500/50 focus:bg-black focus:ring-1 focus:ring-emerald-500/50"
                 />
               </Field>
 
@@ -413,7 +424,7 @@ function PanelPage() {
                 <select
                   value={activeClient.status}
                   onChange={(event) => updateClient(activeClient.id, 'status', event.target.value)}
-                  className="field-input"
+                  className="w-full rounded-xl border border-white/10 bg-black/50 px-4 py-2.5 text-sm text-gray-200 outline-none transition focus:border-emerald-500/50 focus:bg-black focus:ring-1 focus:ring-emerald-500/50"
                 >
                   {statuses.map((status) => (
                     <option key={status.id} value={status.id}>
@@ -423,65 +434,58 @@ function PanelPage() {
                 </select>
               </Field>
 
-              <div className="grid gap-3 sm:grid-cols-2">
-                <Field label="Contacto actual">
+              <div className="grid gap-5 sm:grid-cols-2">
+                <Field label="Último contacto">
                   <input
                     type="date"
                     value={activeClient.lastContactDate}
                     onChange={(event) => updateClient(activeClient.id, 'lastContactDate', event.target.value)}
-                    className="field-input"
+                    className="w-full rounded-xl border border-white/10 bg-black/50 px-4 py-2.5 text-sm text-gray-200 outline-none transition focus:border-emerald-500/50 focus:bg-black focus:ring-1 focus:ring-emerald-500/50"
                   />
                 </Field>
-                <Field label="Proxima accion">
+                <Field label="Próxima acción">
                   <input
                     type="date"
                     value={activeClient.nextActionDate}
                     onChange={(event) => updateClient(activeClient.id, 'nextActionDate', event.target.value)}
-                    className="field-input"
+                    className="w-full rounded-xl border border-white/10 bg-black/50 px-4 py-2.5 text-sm text-gray-200 outline-none transition focus:border-emerald-500/50 focus:bg-black focus:ring-1 focus:ring-emerald-500/50"
                   />
                 </Field>
               </div>
 
-              <div className="grid gap-3 sm:grid-cols-2">
-                <Field label="Origen">
+              <div className="grid gap-5 sm:grid-cols-2">
+                <Field label="Teléfono">
                   <input
-                    value={activeClient.source}
-                    onChange={(event) => updateClient(activeClient.id, 'source', event.target.value)}
-                    className="field-input"
+                    value={activeClient.phone}
+                    onChange={(event) => updateClient(activeClient.id, 'phone', event.target.value)}
+                    className="w-full rounded-xl border border-white/10 bg-black/50 px-4 py-2.5 text-sm text-gray-200 outline-none transition focus:border-emerald-500/50 focus:bg-black focus:ring-1 focus:ring-emerald-500/50"
                   />
                 </Field>
-                <Field label="Responsable">
+                <Field label="Valor estimado">
                   <input
-                    value={activeClient.owner}
-                    onChange={(event) => updateClient(activeClient.id, 'owner', event.target.value)}
-                    className="field-input"
+                    type="number"
+                    value={activeClient.value}
+                    onChange={(event) => updateClient(activeClient.id, 'value', event.target.value)}
+                    className="w-full rounded-xl border border-white/10 bg-black/50 px-4 py-2.5 text-sm text-gray-200 outline-none transition focus:border-emerald-500/50 focus:bg-black focus:ring-1 focus:ring-emerald-500/50"
                   />
                 </Field>
               </div>
 
-              <Field label="Producto">
+              <Field label="Producto interesado">
                 <input
                   value={activeClient.product}
                   onChange={(event) => updateClient(activeClient.id, 'product', event.target.value)}
-                  className="field-input"
+                  className="w-full rounded-xl border border-white/10 bg-black/50 px-4 py-2.5 text-sm text-gray-200 outline-none transition focus:border-emerald-500/50 focus:bg-black focus:ring-1 focus:ring-emerald-500/50"
                 />
               </Field>
 
-              <Field label="Valor estimado">
-                <input
-                  type="number"
-                  value={activeClient.value}
-                  onChange={(event) => updateClient(activeClient.id, 'value', event.target.value)}
-                  className="field-input"
-                />
-              </Field>
-
-              <Field label="Nota de seguimiento">
+              <Field label="Notas de seguimiento">
                 <textarea
                   value={activeClient.situation}
                   onChange={(event) => updateClient(activeClient.id, 'situation', event.target.value)}
-                  rows={5}
-                  className="field-input resize-none leading-6"
+                  rows={4}
+                  className="w-full rounded-xl border border-white/10 bg-black/50 px-4 py-2.5 text-sm text-gray-200 outline-none transition focus:border-emerald-500/50 focus:bg-black focus:ring-1 focus:ring-emerald-500/50 resize-none leading-relaxed"
+                  placeholder="Detalles sobre la situación del cliente..."
                 />
               </Field>
             </div>
@@ -489,40 +493,46 @@ function PanelPage() {
         )}
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 pb-8 sm:px-6 lg:px-8">
-        <div className="grid gap-3 lg:grid-cols-5">
+      <section className="relative z-10 mx-auto max-w-7xl px-4 pt-4 pb-12 sm:px-6 lg:px-8">
+        <h3 className="text-sm font-bold uppercase tracking-widest text-gray-500 mb-6">Pipeline por estado</h3>
+        <div className="grid gap-4 lg:grid-cols-5">
           {statuses.map((status) => {
             const Icon = status.icon
             const statusClients = clients.filter((client) => client.status === status.id)
 
             return (
-              <div key={status.id} className="rounded-lg border border-[#dfe8dc] bg-white p-4">
-                <div className="flex items-center justify-between gap-3">
+              <div key={status.id} className="rounded-2xl border border-white/10 bg-[#0a0a0a]/50 p-4">
+                <div className="flex items-center justify-between gap-3 mb-4">
                   <div className="flex items-center gap-2">
-                    <span className={`inline-flex h-8 w-8 items-center justify-center rounded-md ${status.color}`}>
-                      <Icon className="h-4 w-4" />
+                    <span className={`inline-flex h-7 w-7 items-center justify-center rounded-lg ${status.color}`}>
+                      <Icon className="h-3.5 w-3.5" />
                     </span>
-                    <h3 className="text-sm font-black text-[#17231b]">{status.label}</h3>
+                    <h3 className="text-xs font-black text-gray-300">{status.label}</h3>
                   </div>
-                  <span className="rounded-full bg-[#eef5ec] px-2.5 py-1 text-xs font-black text-[#334238]">
+                  <span className="rounded-full bg-white/10 px-2 py-0.5 text-[10px] font-bold text-gray-400">
                     {statusClients.length}
                   </span>
                 </div>
-                <div className="mt-4 space-y-2">
+                <div className="space-y-2">
                   {statusClients.slice(0, 3).map((client) => (
                     <button
                       key={client.id}
                       type="button"
                       onClick={() => setActiveId(client.id)}
-                      className="block w-full rounded-md border border-[#edf2ea] px-3 py-2 text-left transition hover:border-[#148a45]/40 hover:bg-[#f8fbf6]"
+                      className="block w-full rounded-xl border border-white/5 bg-white/5 px-3 py-2.5 text-left transition hover:border-emerald-500/30 hover:bg-white/10"
                     >
-                      <span className="block text-sm font-bold text-[#17231b]">{client.name}</span>
-                      <span className="mt-0.5 block text-xs font-medium text-[#667568]">{client.product}</span>
+                      <span className="block text-sm font-bold text-gray-200">{client.name}</span>
+                      <span className="mt-1 block text-[10px] font-medium text-gray-500 truncate">{client.product}</span>
                     </button>
                   ))}
                   {statusClients.length === 0 && (
-                    <div className="rounded-md border border-dashed border-[#dfe8dc] px-3 py-5 text-center text-xs font-bold text-[#7a897d]">
-                      Sin clientes
+                    <div className="rounded-xl border border-dashed border-white/10 bg-transparent px-3 py-6 text-center text-xs font-bold text-gray-600">
+                      Vacío
+                    </div>
+                  )}
+                  {statusClients.length > 3 && (
+                    <div className="text-center pt-2 text-[10px] font-bold text-gray-500">
+                      + {statusClients.length - 3} más
                     </div>
                   )}
                 </div>
@@ -537,14 +547,14 @@ function PanelPage() {
 
 function Metric({ icon: Icon, label, value }) {
   return (
-    <div className="rounded-lg border border-[#dfe8dc] bg-[#fbfdf9] p-4">
-      <div className="flex items-center gap-3">
-        <span className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-[#e9f5e7] text-[#148a45]">
-          <Icon className="h-5 w-5" />
+    <div className="rounded-2xl border border-white/10 bg-[#0a0a0a]/80 backdrop-blur-md p-5 transition-transform hover:scale-[1.02]">
+      <div className="flex items-center gap-4">
+        <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-white/5 text-gray-300">
+          <Icon className="h-6 w-6" />
         </span>
         <div>
-          <p className="text-xs font-black uppercase tracking-normal text-[#667568]">{label}</p>
-          <p className="mt-1 text-xl font-black text-[#17231b]">{value}</p>
+          <p className="text-[10px] font-bold uppercase tracking-widest text-gray-500">{label}</p>
+          <p className="mt-1 text-2xl font-black text-white tracking-tight">{value}</p>
         </div>
       </div>
     </div>
@@ -553,8 +563,8 @@ function Metric({ icon: Icon, label, value }) {
 
 function Field({ children, label }) {
   return (
-    <label className="grid gap-1.5">
-      <span className="text-xs font-black uppercase tracking-normal text-[#667568]">{label}</span>
+    <label className="grid gap-2">
+      <span className="text-[10px] font-bold uppercase tracking-widest text-gray-500">{label}</span>
       {children}
     </label>
   )
