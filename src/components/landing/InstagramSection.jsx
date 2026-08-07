@@ -4,7 +4,7 @@ import {
   INSTAGRAM_URL,
   buildWhatsAppUrl,
 } from '../../config/contact'
-import { MessageCircle, Instagram } from 'lucide-react'
+import { MessageCircle, ArrowRight } from 'lucide-react'
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -55,7 +55,7 @@ function InstagramSection() {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 rounded-full border border-gray-200 bg-white px-8 py-4 text-sm font-bold text-gray-900 transition-all duration-300 hover:border-gray-900 hover:bg-gray-50"
             >
-              <Instagram className="w-5 h-5" />
+              <ArrowRight className="w-5 h-5" />
               Ver {INSTAGRAM_HANDLE}
             </a>
           </motion.div>
