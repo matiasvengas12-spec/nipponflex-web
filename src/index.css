@@ -145,6 +145,19 @@ html {
   box-shadow: 0 24px 50px rgb(0 0 0 / 0.32);
 }
 
+.fx-apple-reveal {
+  opacity: 0;
+  transform: translate3d(0, 52px, 0) scale(0.985);
+  transition:
+    opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.fx-apple-reveal.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
 .fx-hero-frame {
   position: relative;
 }
