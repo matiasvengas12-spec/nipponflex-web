@@ -184,13 +184,12 @@ function BiohackingPage() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="relative h-[600px] rounded-3xl overflow-hidden border border-gray-800/60"
+            className="relative flex items-center justify-center drop-shadow-2xl"
           >
-            <div className="absolute inset-0 bg-gradient-to-tr from-emerald-900/40 to-transparent z-10 mix-blend-overlay" />
             <img
               src="/images/biohacking-advisory-tech.png"
               alt="Biohacking y Tecnología del descanso"
-              className="w-full h-full object-cover"
+              className="w-full h-auto max-h-[600px] object-contain rounded-3xl"
             />
           </motion.div>
         </div>

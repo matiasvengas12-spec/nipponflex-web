@@ -49,6 +49,9 @@ function LifestyleVisionSection() {
             <p className="mt-1 text-2xl font-black leading-tight text-white sm:text-4xl">
               El impacto del estilo de vida moderno
             </p>
+            <p className="mt-4 text-base font-medium leading-relaxed text-[#d7e6d8] sm:text-lg max-w-2xl mx-auto">
+              El biohacking es la respuesta para contrarrestar este problema, recuperando de forma simple el equilibrio natural que tu cuerpo necesita.
+            </p>
           </div>
 
           <div className="mt-7 grid gap-4 md:grid-cols-2 lg:gap-6">
