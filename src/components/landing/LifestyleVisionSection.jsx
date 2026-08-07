@@ -44,7 +44,7 @@ function LifestyleVisionSection() {
         >
           <div className="text-center">
             <p className="text-2xl font-black leading-tight text-[#c7ab54] sm:text-4xl">
-              Disconexión con la Naturaleza:
+              Desconexion con la Naturaleza:
             </p>
             <p className="mt-1 text-2xl font-black leading-tight text-white sm:text-4xl">
               El impacto del estilo de vida moderno
