@@ -4,33 +4,34 @@ import { buildWhatsAppUrl } from '../../config/contact'
 const navItems = [
   { label: 'Inicio', href: '/' },
   { label: 'Biohacking', href: '/biohacking' },
-  { label: 'Tecnologias', href: '/tecnologias' },
+  { label: 'Tecnologías', href: '/tecnologias' },
   { label: 'Distribuidores', href: '/distribuidores' },
-  { label: 'Catalogo', href: '/#catalogo' },
+  { label: 'Catálogo', href: '/#catalogo' },
 ]
 
 function SiteHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-
   const closeMenu = () => setIsMenuOpen(false)
 
   return (
-    <header className="sticky top-0 z-40 border-b border-[#dbe6d8] bg-white/95 px-4 backdrop-blur sm:px-8 lg:px-10">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 py-3 lg:min-h-16">
-        <a href="/" className="text-base font-black text-[#12351f] sm:text-lg">
-          Nippon Flex Vida Plena
+    <header className="fixed top-0 left-0 right-0 z-50 pt-4 px-4 sm:px-6 pointer-events-none">
+      <div className="mx-auto flex max-w-5xl items-center justify-between gap-3 py-3 px-6 rounded-full border border-white/20 bg-white/70 backdrop-blur-xl shadow-lg shadow-black/5 pointer-events-auto transition-all duration-300">
+        
+        <a href="/" className="text-lg font-black tracking-tight text-gray-900 transition hover:opacity-80">
+          Nipponflex
         </a>
 
-        <div className="hidden items-center gap-3 lg:flex">
+        {/* Desktop Menu */}
+        <div className="hidden lg:flex items-center gap-2">
           <nav
-            aria-label="Navegacion principal"
-            className="flex items-center gap-1 whitespace-nowrap"
+            aria-label="Navegación principal"
+            className="flex items-center gap-1 whitespace-nowrap bg-white/50 p-1 rounded-full border border-white/40"
           >
             {navItems.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className="rounded-md px-3 py-2 text-sm font-bold text-[#4f6656] transition hover:bg-[#edf7e9] hover:text-[#148a45] focus:outline-none focus:ring-4 focus:ring-[#d9ebd6]"
+                className="rounded-full px-4 py-1.5 text-sm font-bold text-gray-600 transition-all hover:bg-white hover:text-gray-900 hover:shadow-sm"
               >
                 {item.label}
               </a>
@@ -43,56 +44,64 @@ function SiteHeader() {
             )}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center rounded-md bg-[#148a45] px-4 py-2 text-sm font-bold text-white transition hover:bg-[#0f7338] focus:outline-none focus:ring-4 focus:ring-[#98d5ad]"
+            className="ml-2 inline-flex items-center justify-center rounded-full bg-gray-900 px-5 py-2 text-sm font-bold text-white transition hover:bg-emerald-600 hover:scale-105 hover:shadow-md hover:shadow-emerald-900/20"
           >
-            Solicitar asesoria
+            Asesoría
           </a>
         </div>
 
+        {/* Mobile Menu Toggle */}
         <button
           type="button"
           aria-controls="mobile-menu"
           aria-expanded={isMenuOpen}
-          aria-label={isMenuOpen ? 'Cerrar menu' : 'Abrir menu'}
+          aria-label={isMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
           onClick={() => setIsMenuOpen((current) => !current)}
-          className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-[#dbe6d8] text-[#12351f] transition hover:bg-[#edf7e9] focus:outline-none focus:ring-4 focus:ring-[#d9ebd6] lg:hidden"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/50 text-gray-900 transition hover:bg-white focus:outline-none lg:hidden"
         >
           <span className="flex w-5 flex-col gap-1.5" aria-hidden="true">
-            <span className="block h-0.5 w-full rounded-full bg-[#12351f]" />
-            <span className="block h-0.5 w-full rounded-full bg-[#12351f]" />
-            <span className="block h-0.5 w-full rounded-full bg-[#12351f]" />
+            <span className={`block h-0.5 w-full rounded-full bg-gray-900 transition-all ${isMenuOpen ? 'rotate-45 translate-y-2' : ''}`} />
+            <span className={`block h-0.5 w-full rounded-full bg-gray-900 transition-all ${isMenuOpen ? 'opacity-0' : ''}`} />
+            <span className={`block h-0.5 w-full rounded-full bg-gray-900 transition-all ${isMenuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
           </span>
         </button>
       </div>
 
+      {/* Mobile Menu Dropdown */}
       <div
         id="mobile-menu"
-        className={`${isMenuOpen ? 'block' : 'hidden'} mx-auto max-w-7xl border-t border-[#edf2ea] pb-3 lg:hidden`}
+        className={`absolute top-full left-4 right-4 mt-2 rounded-2xl border border-white/20 bg-white/90 backdrop-blur-xl shadow-2xl shadow-black/10 transition-all duration-300 origin-top pointer-events-auto lg:hidden ${
+          isMenuOpen ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0 pointer-events-none'
+        }`}
       >
-        <nav aria-label="Navegacion principal" className="flex flex-col py-2">
-          {navItems.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              onClick={closeMenu}
-              className="rounded-md px-3 py-3 text-sm font-bold text-[#4f6656] transition hover:bg-[#edf7e9] hover:text-[#148a45] focus:outline-none focus:ring-4 focus:ring-[#d9ebd6]"
-            >
-              {item.label}
-            </a>
-          ))}
-        </nav>
+        <div className="p-4 flex flex-col gap-2">
+          <nav aria-label="Navegación principal" className="flex flex-col gap-1">
+            {navItems.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                onClick={closeMenu}
+                className="rounded-xl px-4 py-3 text-base font-bold text-gray-700 transition hover:bg-gray-100 hover:text-gray-900"
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
+          
+          <div className="h-px w-full bg-gray-200 my-2" />
 
-        <a
-          href={buildWhatsAppUrl(
-            'Hola, quiero recibir asesoramiento sobre productos Nipponflex.',
-          )}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={closeMenu}
-          className="flex items-center justify-center rounded-md bg-[#148a45] px-4 py-3 text-sm font-bold text-white transition hover:bg-[#0f7338] focus:outline-none focus:ring-4 focus:ring-[#98d5ad]"
-        >
-          Solicitar asesoria
-        </a>
+          <a
+            href={buildWhatsAppUrl(
+              'Hola, quiero recibir asesoramiento sobre productos Nipponflex.',
+            )}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={closeMenu}
+            className="flex items-center justify-center rounded-xl bg-emerald-600 px-4 py-3 text-base font-bold text-white transition hover:bg-emerald-500 shadow-lg shadow-emerald-900/20"
+          >
+            Solicitar asesoría
+          </a>
+        </div>
       </div>
     </header>
   )
