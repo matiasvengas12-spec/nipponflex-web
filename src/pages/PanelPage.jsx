@@ -176,7 +176,7 @@ function loadStoredData(key, initialData) {
 function PanelPage() {
   const [activeTab, setActiveTab] = useState('crm') // 'crm' | 'transactions'
   const [theme, setTheme] = useState(() => {
-    return window.localStorage.getItem(THEME_STORAGE_KEY) || 'dark'
+    return window.localStorage.getItem(THEME_STORAGE_KEY) || 'light'
   })
   
   // Theme dictionary
