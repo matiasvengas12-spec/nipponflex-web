@@ -1,196 +1,198 @@
+import { motion, useScroll, useTransform } from 'framer-motion'
+import { ArrowRight, Activity, Moon, Zap, ShieldCheck } from 'lucide-react'
 import { buildWhatsAppUrl } from '../config/contact'
+import { useRef } from 'react'
 
-const habitCards = [
+const fadeInUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } },
+}
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
+}
+
+const habits = [
   {
-    title: 'Dormir mejor',
-    image: '/images/biohacking-descanso.png',
-    alt: 'Descanso inteligente con tecnologia de bienestar',
-    points: [
-      'Descanso profundo',
-      'Rutina anti estres',
-      'Energia al despertar',
-    ],
+    title: 'Alimentación y movimiento',
+    description:
+      'Cuando cuidamos de nuestra salud haciendo ejercicio físico regular y escogiendo bien nuestra alimentación, prestando atención a lo que nos hace bien y bebiendo agua de calidad, mejoramos el funcionamiento del cuerpo.',
+    icon: Activity,
+    color: 'text-emerald-400',
+    bg: 'bg-emerald-950/30',
+    border: 'border-emerald-500/20',
   },
   {
-    title: 'Tomar mejor',
-    image: '/images/biohacking-hidratacion.png',
-    alt: 'Hidratacion celular y agua alcalina',
-    points: [
-      'Biohackea tu filtro',
-      'Eliminacion de toxinas',
-      'Tomar el control',
-    ],
-  },
-  {
-    title: 'Moverse con...',
-    image: '/images/biohacking-movimiento.png',
-    alt: 'Movimiento y bienestar corporal cotidiano',
-    points: [
-      'Beneficio en movimiento',
-      'Movimiento sin molestias',
-      'Postura mejorada',
-    ],
+    title: 'Sueño y descanso',
+    description:
+      'Cuando buscamos mejorar el sueño despejando la mente, eligiendo el sistema de descanso adecuado y asegurando una buena noche, obtenemos más energía y reparación celular.',
+    icon: Moon,
+    color: 'text-indigo-400',
+    bg: 'bg-indigo-950/30',
+    border: 'border-indigo-500/20',
   },
 ]
 
-const advisorySteps = [
+const technologies = [
   {
-    title: 'Observamos tu rutina',
-    text: 'Descanso, hidratacion, movimiento y entorno cotidiano.',
+    name: 'FIR Power',
+    desc: 'Infrarrojo largo que estimula las células madre y mejora el flujo sanguíneo.',
+    icon: Zap,
   },
   {
-    title: 'Detectamos el punto de entrada',
-    text: 'Elegimos por donde conviene empezar sin abrumar.',
-  },
-  {
-    title: 'Recomendamos simple',
-    text: 'Una sugerencia clara, aplicable y facil de conversar.',
+    name: 'Magneto',
+    desc: 'Terapia magnética que compensa el déficit magnético de la vida moderna.',
+    icon: ShieldCheck,
   },
 ]
 
 function BiohackingPage() {
+  const containerRef = useRef(null)
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start start', 'end start'],
+  })
+
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, 200])
+  const opacity1 = useTransform(scrollYProgress, [0, 0.5], [1, 0])
+
   return (
-    <main className="bg-[#06391f]">
-      <section className="bg-[linear-gradient(135deg,#fbf9ef_0%,#f4f1df_52%,#e7eedf_100%)] px-4 py-12 sm:px-8 sm:py-16 lg:px-10">
-        <div className="mx-auto max-w-6xl">
-          <div className="grid gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:items-end">
-            <div>
-              <p className="text-sm font-black uppercase tracking-normal text-[#9d843f]">
-                Vida Plena Nipponflex
-              </p>
-              <h1 className="mt-3 max-w-3xl text-4xl font-black leading-[1.03] text-[#173d2b] sm:text-6xl">
-                Biohacking simple para elegir mejor cada día
-              </h1>
-              <p className="mt-5 max-w-2xl text-base font-medium leading-7 text-[#526956] sm:text-lg sm:leading-8">
-                Descanso, agua y movimiento son las tres puertas de entrada.
-                Te ayudamos a leer la rutina y conectar cada hábito con una
-                recomendación Nipponflex clara, concreta y fácil de sostener.
-              </p>
+    <main className="bg-black text-white selection:bg-emerald-500/30" ref={containerRef}>
+      {/* Hero Section */}
+      <section className="relative min-h-[90vh] flex flex-col items-center justify-center overflow-hidden pt-20 px-6">
+        <div className="absolute inset-0 z-0 flex items-center justify-center">
+          <div className="w-[800px] h-[800px] bg-emerald-900/20 rounded-full blur-[120px] mix-blend-screen opacity-60" />
+          <div className="absolute w-[600px] h-[600px] bg-blue-900/20 rounded-full blur-[100px] mix-blend-screen opacity-40 translate-x-1/3 translate-y-1/4" />
+        </div>
 
-              <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-                <a
-                  href={buildWhatsAppUrl(
-                    'Hola, quiero asesoramiento sobre biohacking y productos Nipponflex.',
-                  )}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center rounded-md bg-[#148a45] px-5 py-3.5 text-sm font-black text-white shadow-lg shadow-green-950/15 transition hover:-translate-y-0.5 hover:bg-[#0f7338] focus:outline-none focus:ring-4 focus:ring-[#98d5ad]"
-                >
-                  Solicitar asesoramiento
-                </a>
-                <a
-                  href="/#catalogo"
-                  className="inline-flex items-center justify-center rounded-md border border-[#9d843f]/55 bg-white/55 px-5 py-3.5 text-sm font-black text-[#173d2b] transition hover:-translate-y-0.5 hover:bg-white focus:outline-none focus:ring-4 focus:ring-[#e5dab7]"
-                >
-                  Ver productos
-                </a>
-              </div>
-            </div>
+        <motion.div
+          style={{ y: y1, opacity: opacity1 }}
+          initial="hidden"
+          animate="visible"
+          variants={staggerContainer}
+          className="relative z-10 max-w-5xl mx-auto text-center"
+        >
+          <motion.p variants={fadeInUp} className="text-emerald-400 font-semibold tracking-widest uppercase mb-6 text-sm sm:text-base">
+            Optimización Natural
+          </motion.p>
+          <motion.h1 variants={fadeInUp} className="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight leading-[1.05] mb-8">
+            ¿Qué es el <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-emerald-100 to-white">Biohacking?</span>
+          </motion.h1>
+          <motion.p variants={fadeInUp} className="text-xl sm:text-2xl text-gray-400 max-w-3xl mx-auto font-medium leading-relaxed mb-12">
+            Hackear el cuerpo mediante métodos naturales y la inteligencia de la naturaleza, desafiando a la mente y al cuerpo a alcanzar su máximo rendimiento sin soluciones complejas.
+          </motion.p>
 
-            <div className="grid gap-3 border-l-0 border-[#c7ab54]/45 pt-1 lg:border-l lg:pl-8">
-              {habitCards.map((card, index) => (
-                <div
-                  key={card.title}
-                  className="grid grid-cols-[44px_1fr] items-center gap-4 rounded-lg border border-[#d9cfaa] bg-white/58 p-4 shadow-lg shadow-green-950/5 backdrop-blur"
-                >
-                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-[#173d2b] text-sm font-black text-[#f3d47a]">
-                    0{index + 1}
-                  </span>
-                  <div>
-                    <h2 className="text-lg font-black leading-tight text-[#173d2b]">
-                      {card.title}
-                    </h2>
-                    <p className="mt-1 text-sm font-medium leading-5 text-[#526956]">
-                      {card.points[0]} · {card.points[2]}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+          <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row items-center justify-center gap-6">
+            <a
+              href="#conoce-mas"
+              className="px-8 py-4 rounded-full bg-white text-black font-bold hover:scale-105 transition-transform duration-300 flex items-center gap-2"
+            >
+              Descubrir cómo
+              <ArrowRight className="w-5 h-5" />
+            </a>
+          </motion.div>
+        </motion.div>
+      </section>
 
-          <div className="mt-10 grid gap-4 md:grid-cols-3">
-            {habitCards.map((card) => (
-              <article
-                key={card.title}
-                className="fx-card flex min-h-[315px] flex-col rounded-lg border border-[#ded8bd] bg-[#fffdf4] p-3 shadow-xl shadow-green-950/10 transition duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-green-950/15"
+      {/* Already Doing It Section */}
+      <section id="conoce-mas" className="py-32 px-6 relative z-10 bg-black">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-100px' }}
+            variants={fadeInUp}
+            className="text-center mb-20"
+          >
+            <h2 className="text-4xl sm:text-6xl font-black mb-6">Ya estás haciendo biohacking</h2>
+            <p className="text-gray-400 text-xl sm:text-2xl max-w-2xl mx-auto">
+              Aunque no lo sepas, en definitiva el biohacking consiste en aprovechar los recursos de nuestro propio cuerpo a nuestro favor.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {habits.map((habit, idx) => (
+              <motion.div
+                key={habit.title}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: '-100px' }}
+                variants={{
+                  hidden: { opacity: 0, y: 40 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.8, delay: idx * 0.2 } },
+                }}
+                className={`p-10 rounded-3xl border ${habit.border} ${habit.bg} backdrop-blur-md flex flex-col justify-between group hover:-translate-y-2 transition-transform duration-500`}
               >
-                <img
-                  src={card.image}
-                  alt={card.alt}
-                  className="aspect-[16/9] w-full rounded-md object-cover"
-                />
-
-                <div className="flex flex-1 flex-col px-1 pt-4">
-                  <h2 className="text-lg font-black leading-tight text-[#173d2b]">
-                    {card.title}
-                  </h2>
-
-                  <ul className="mt-3 grid gap-1.5">
-                    {card.points.map((point) => (
-                      <li
-                        key={point}
-                        className="grid grid-cols-[16px_1fr] gap-2 text-xs font-bold leading-5 text-[#526956]"
-                      >
-                        <span className="text-[#c9ad62]">✓</span>
-                        <span>{point}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <a
-                    href="/#catalogo"
-                    className="mt-auto pt-4 text-xs font-black text-[#173d2b] transition hover:text-[#148a45]"
-                  >
-                    Saber más &gt;
-                  </a>
+                <div>
+                  <habit.icon className={`w-12 h-12 ${habit.color} mb-8`} />
+                  <h3 className="text-3xl font-bold mb-4">{habit.title}</h3>
+                  <p className="text-gray-300 text-lg leading-relaxed">
+                    {habit.description}
+                  </p>
                 </div>
-              </article>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-[#12351f] px-4 py-14 text-white sm:px-8 sm:py-18 lg:px-10">
-        <div className="mx-auto max-w-7xl">
-          <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-            <div>
-              <p className="text-sm font-black uppercase tracking-normal text-[#f3b23c]">
-                Metodo de asesoramiento
-              </p>
-              <h2 className="mt-3 max-w-2xl text-3xl font-black leading-tight sm:text-5xl">
-                De una consulta suelta a una recomendacion clara
-              </h2>
-              <p className="mt-5 max-w-xl text-base leading-7 text-[#d7e6d8] sm:text-lg sm:leading-8">
-                La conversacion empieza por lo que la persona vive todos los
-                dias: como duerme, como se hidrata y que quiere mejorar. El
-                producto aparece despues, con contexto.
-              </p>
+      {/* Tech Section */}
+      <section className="py-32 px-6 bg-gradient-to-b from-black to-[#0a1510] relative overflow-hidden z-10">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-100px' }}
+            variants={staggerContainer}
+          >
+            <motion.h2 variants={fadeInUp} className="text-4xl sm:text-6xl font-black mb-6 leading-tight">
+              Tecnología que <br /> potencia tu descanso
+            </motion.h2>
+            <motion.p variants={fadeInUp} className="text-xl text-gray-400 mb-10 leading-relaxed">
+              Herramientas naturales que ayudan a tu cuerpo a recuperarse mejor mientras dormís, sin medicamentos ni procesos complejos.
+            </motion.p>
+
+            <div className="space-y-8">
+              {technologies.map((tech) => (
+                <motion.div key={tech.name} variants={fadeInUp} className="flex gap-4">
+                  <div className="w-12 h-12 rounded-full bg-emerald-900/50 border border-emerald-500/30 flex items-center justify-center flex-shrink-0">
+                    <tech.icon className="w-6 h-6 text-emerald-400" />
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-bold mb-2">{tech.name}</h4>
+                    <p className="text-gray-400">{tech.desc}</p>
+                  </div>
+                </motion.div>
+              ))}
             </div>
 
-            <div className="fx-card overflow-hidden rounded-lg border border-white/15 bg-white shadow-2xl shadow-black/25">
-              <img
-                src="/images/biohacking-advisory-tech.png"
-                alt="Asesoramiento simple: escuchamos tu rutina, entendemos el objetivo y sugerimos un camino"
-                className="h-full w-full object-cover"
-              />
-            </div>
-          </div>
-
-          <div className="mt-8 grid gap-3 rounded-lg border border-white/12 bg-white/[0.06] p-4 shadow-2xl shadow-black/10 sm:p-5 lg:grid-cols-3">
-            {advisorySteps.map((step, index) => (
-              <article
-                key={step.title}
-                className="grid gap-3 border-white/12 py-3 lg:border-l lg:pl-5 lg:first:border-l-0"
+            <motion.div variants={fadeInUp} className="mt-12">
+              <a
+                href={buildWhatsAppUrl('Hola, quiero potenciar mi biohacking del descanso con Nipponflex.')}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-emerald-600 text-white font-bold hover:bg-emerald-500 transition-colors duration-300"
               >
-                <span className="text-sm font-black text-[#f3b23c]">
-                  0{index + 1}
-                </span>
-                <h3 className="text-xl font-black text-white">{step.title}</h3>
-                <p className="text-sm leading-6 text-[#d7e6d8]">{step.text}</p>
-              </article>
-            ))}
-          </div>
+                Consultar por WhatsApp
+              </a>
+            </motion.div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+            className="relative h-[600px] rounded-3xl overflow-hidden border border-gray-800/60"
+          >
+            <div className="absolute inset-0 bg-gradient-to-tr from-emerald-900/40 to-transparent z-10 mix-blend-overlay" />
+            <img
+              src="/images/biohacking-advisory-tech.png"
+              alt="Biohacking y Tecnología del descanso"
+              className="w-full h-full object-cover"
+            />
+          </motion.div>
         </div>
       </section>
     </main>
