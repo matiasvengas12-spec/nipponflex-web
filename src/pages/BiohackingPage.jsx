@@ -1,8 +1,8 @@
 const habitCards = [
   {
     title: 'Dormir mejor',
-    image: '/images/biohacking-ref-sleep.png',
-    alt: 'Persona descansando en la cama',
+    image: '/images/biohacking-descanso.png',
+    alt: 'Descanso inteligente con tecnologia de bienestar',
     points: [
       'Descanso profundo',
       'Rutina anti estres',
@@ -11,8 +11,8 @@ const habitCards = [
   },
   {
     title: 'Tomar mejor',
-    image: '/images/biohacking-ref-water.png',
-    alt: 'Agua limpia en movimiento',
+    image: '/images/biohacking-hidratacion.png',
+    alt: 'Hidratacion celular y agua alcalina',
     points: [
       'Biohackea tu filtro',
       'Eliminacion de toxinas',
@@ -21,8 +21,8 @@ const habitCards = [
   },
   {
     title: 'Moverse con...',
-    image: '/images/biohacking-ref-move.png',
-    alt: 'Persona corriendo',
+    image: '/images/biohacking-movimiento.png',
+    alt: 'Movimiento y bienestar corporal cotidiano',
     points: [
       'Beneficio en movimiento',
       'Movimiento sin molestias',
@@ -32,9 +32,18 @@ const habitCards = [
 ]
 
 const advisorySteps = [
-  'Escuchamos tu rutina',
-  'Entendemos el objetivo',
-  'Sugerimos un camino',
+  {
+    title: 'Observamos tu rutina',
+    text: 'Descanso, hidratacion, movimiento y entorno cotidiano.',
+  },
+  {
+    title: 'Detectamos el punto de entrada',
+    text: 'Elegimos por donde conviene empezar sin abrumar.',
+  },
+  {
+    title: 'Recomendamos simple',
+    text: 'Una sugerencia clara, aplicable y facil de conversar.',
+  },
 ]
 
 function BiohackingPage() {
@@ -93,54 +102,45 @@ function BiohackingPage() {
         </div>
       </section>
 
-      <section className="bg-[#073b22] px-4 py-14 text-white sm:px-8 sm:py-18 lg:px-10">
-        <div className="mx-auto grid max-w-5xl gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-          <div>
-            <h2 className="max-w-lg text-3xl font-black leading-tight sm:text-5xl">
-              De una consulta suelta a una recomendación clara
-            </h2>
-            <p className="mt-5 text-sm font-black uppercase tracking-normal text-[#d7bd72]">
-              Método de asesoramiento
-            </p>
-            <p className="mt-4 max-w-xl text-sm font-medium leading-6 text-[#d7e6d8] sm:text-base sm:leading-7">
-              Leemos cómo está tu dormir, despertar, digestión, sed, sedentarismo
-              y descanso. Traducir el dolor diario en una elección de producto
-              correcta evita compras sin sentido.
-            </p>
+      <section className="bg-[#12351f] px-4 py-14 text-white sm:px-8 sm:py-18 lg:px-10">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+            <div>
+              <p className="text-sm font-black uppercase tracking-normal text-[#f3b23c]">
+                Metodo de asesoramiento
+              </p>
+              <h2 className="mt-3 max-w-2xl text-3xl font-black leading-tight sm:text-5xl">
+                De una consulta suelta a una recomendacion clara
+              </h2>
+              <p className="mt-5 max-w-xl text-base leading-7 text-[#d7e6d8] sm:text-lg sm:leading-8">
+                La conversacion empieza por lo que la persona vive todos los
+                dias: como duerme, como se hidrata y que quiere mejorar. El
+                producto aparece despues, con contexto.
+              </p>
+            </div>
+
+            <div className="fx-card overflow-hidden rounded-lg border border-white/15 bg-white shadow-2xl shadow-black/25">
+              <img
+                src="/images/biohacking-advisory-tech.png"
+                alt="Asesoramiento simple: escuchamos tu rutina, entendemos el objetivo y sugerimos un camino"
+                className="h-full w-full object-cover"
+              />
+            </div>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-[1fr_0.72fr] sm:items-stretch">
-            <article className="rounded-lg bg-[#89a48f] p-3 shadow-2xl shadow-black/20">
-              <img
-                src="/images/biohacking-ref-advisor.png"
-                alt="Asesor revisando una rutina en tablet"
-                className="aspect-[4/5] w-full rounded-md object-cover"
-              />
-              <div className="px-2 pb-2 pt-4 text-center">
-                <h3 className="text-xl font-black leading-tight">
-                  Asesoramiento Simple
-                </h3>
-                <p className="mt-1 text-xs font-bold text-white/78">
-                  Asesoramiento ligero
-                </p>
-              </div>
-            </article>
-
-            <div className="grid gap-3">
-              {advisorySteps.map((step, index) => (
-                <article
-                  key={step}
-                  className="grid min-h-24 grid-cols-[1fr_auto] items-center gap-3 rounded-lg bg-white/20 p-4 shadow-xl shadow-black/10 backdrop-blur"
-                >
-                  <p className="text-sm font-black leading-tight text-white">
-                    {step}
-                  </p>
-                  <span className="text-3xl font-black leading-none text-[#d7bd72]">
-                    {index + 1}
-                  </span>
-                </article>
-              ))}
-            </div>
+          <div className="mt-8 grid gap-3 rounded-lg border border-white/12 bg-white/[0.06] p-4 shadow-2xl shadow-black/10 sm:p-5 lg:grid-cols-3">
+            {advisorySteps.map((step, index) => (
+              <article
+                key={step.title}
+                className="grid gap-3 border-white/12 py-3 lg:border-l lg:pl-5 lg:first:border-l-0"
+              >
+                <span className="text-sm font-black text-[#f3b23c]">
+                  0{index + 1}
+                </span>
+                <h3 className="text-xl font-black text-white">{step.title}</h3>
+                <p className="text-sm leading-6 text-[#d7e6d8]">{step.text}</p>
+              </article>
+            ))}
           </div>
         </div>
       </section>
