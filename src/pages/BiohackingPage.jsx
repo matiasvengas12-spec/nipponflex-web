@@ -68,9 +68,9 @@ function BiohackingPage() {
           className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none"
         >
           <img 
-            src="/images/biohacking-advisory-tech.png" 
+            src="/images/biohacking-hero-bg.png" 
             alt="Fondo Biohacking" 
-            className="w-[800px] h-[800px] object-contain opacity-25 mix-blend-screen"
+            className="w-[800px] h-[800px] object-cover opacity-35 mix-blend-screen rounded-full blur-[8px]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black" />
           <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black" />
