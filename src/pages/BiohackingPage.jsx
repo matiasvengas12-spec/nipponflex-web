@@ -61,7 +61,22 @@ function BiohackingPage() {
     <main className="bg-black text-white selection:bg-emerald-500/30" ref={containerRef}>
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex flex-col items-center justify-center overflow-hidden pt-20 px-6">
-        <div className="absolute inset-0 z-0 flex items-center justify-center">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 2, ease: "easeOut" }}
+          className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none"
+        >
+          <img 
+            src="/images/biohacking-advisory-tech.png" 
+            alt="Fondo Biohacking" 
+            className="w-[800px] h-[800px] object-contain opacity-25 mix-blend-screen"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black" />
+        </motion.div>
+
+        <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
           <div className="w-[800px] h-[800px] bg-emerald-900/20 rounded-full blur-[120px] mix-blend-screen opacity-60" />
           <div className="absolute w-[600px] h-[600px] bg-blue-900/20 rounded-full blur-[100px] mix-blend-screen opacity-40 translate-x-1/3 translate-y-1/4" />
         </div>

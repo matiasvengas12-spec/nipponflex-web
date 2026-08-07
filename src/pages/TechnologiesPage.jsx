@@ -122,7 +122,7 @@ function TechnologiesPage() {
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
             variants={fadeInUp}
-            className="rounded-[40px] border border-emerald-500/20 bg-gradient-to-br from-emerald-950/40 to-black p-8 sm:p-14 lg:grid lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-16 shadow-2xl shadow-emerald-900/10 backdrop-blur-xl"
+            className="rounded-[40px] border border-emerald-500/20 bg-gradient-to-br from-emerald-950/40 to-black p-8 sm:p-14 flex flex-col lg:grid lg:grid-cols-[1.1fr_0.9fr] lg:items-center gap-12 lg:gap-16 shadow-2xl shadow-emerald-900/10 backdrop-blur-xl"
           >
             <div className="order-2 lg:order-1 mt-12 lg:mt-0">
               <div className="flex items-center gap-3 mb-6">
