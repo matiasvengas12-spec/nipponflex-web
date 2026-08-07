@@ -16,12 +16,13 @@ import {
   Sun,
   ChevronDown,
   ChevronUp,
-  X
+  X,
+  Briefcase
 } from 'lucide-react'
 import { featuredProducts } from '../data/products'
 
-const STORAGE_KEY = 'vidasanasm-crm-demo-v3'
-const TRANSACTIONS_STORAGE_KEY = 'vidasanasm-transactions-demo-v3'
+const STORAGE_KEY = 'vidasanasm-crm-demo-v4'
+const TRANSACTIONS_STORAGE_KEY = 'vidasanasm-transactions-demo-v4'
 const THEME_STORAGE_KEY = 'vidasanasm-crm-theme'
 
 const CATALOG_PRODUCTS = featuredProducts.map(p => p.name)
@@ -70,6 +71,7 @@ const initialClients = [
     name: 'Mariana Costa',
     email: 'mariana.costa@email.com',
     phone: '+54 9 11 5248-9031',
+    role: 'cliente',
     source: 'Instagram',
     products: ['Colchón Evolution FIR Gz Relax'],
     status: 'reunion-pendiente',
@@ -86,6 +88,7 @@ const initialClients = [
     name: 'Federico Ramos',
     email: 'fede.ramos88@email.com',
     phone: '+54 9 11 6821-4419',
+    role: 'cliente',
     source: 'WhatsApp',
     products: ['Kit Familiar', 'Plantilla Insole Power'],
     status: 'segundo-contacto',
@@ -102,6 +105,7 @@ const initialClients = [
     name: 'Claudia Méndez',
     email: 'clau.mendez@email.com',
     phone: '+54 9 11 3904-2208',
+    role: 'cliente',
     source: 'Referido',
     products: ['Jarra Purificadora Alcaline Max 3 Lts.', 'Pulsera FIR ION'],
     status: 'primer-compra',
@@ -113,6 +117,38 @@ const initialClients = [
       'Hizo primera compra. Programar seguimiento de experiencia y detectar si suma almohadas.',
     value: 155000,
   },
+  {
+    id: 4,
+    name: 'Alejandro',
+    email: 'ale.distribuidor@email.com',
+    phone: '+54 9 11 1111-2222',
+    role: 'distribuidor',
+    source: 'Interno',
+    products: [],
+    status: 'nipponflex-fan',
+    contactDate: '2025-01-10',
+    lastContactDate: '2026-08-07',
+    nextActionDate: '2026-08-10',
+    owner: 'Admin',
+    situation: 'Distribuidor principal enfocado en zona norte.',
+    value: 0,
+  },
+  {
+    id: 5,
+    name: 'Sofía',
+    email: 'sofia.ventas@email.com',
+    phone: '+54 9 11 3333-4444',
+    role: 'distribuidor',
+    source: 'Interno',
+    products: [],
+    status: 'nipponflex-fan',
+    contactDate: '2025-05-20',
+    lastContactDate: '2026-08-06',
+    nextActionDate: '2026-08-09',
+    owner: 'Admin',
+    situation: 'Distribuidora especializada en kits familiares y purificadores.',
+    value: 0,
+  }
 ]
 
 const initialTransactions = [
@@ -138,7 +174,7 @@ const initialTransactions = [
     amount: 420000,
     units: 1,
     date: '2026-08-05',
-    distributor: 'Mica',
+    distributor: 'Sofía',
   },
 ]
 
@@ -180,7 +216,7 @@ function loadStoredData(key, initialData) {
 }
 
 function PanelPage() {
-  const [activeTab, setActiveTab] = useState('crm') // 'crm' | 'transactions'
+  const [activeTab, setActiveTab] = useState('crm') // 'crm' | 'distributors' | 'transactions'
   const [theme, setTheme] = useState(() => {
     return window.localStorage.getItem(THEME_STORAGE_KEY) || 'light'
   })
@@ -247,6 +283,10 @@ function PanelPage() {
     window.localStorage.setItem(THEME_STORAGE_KEY, theme)
   }, [theme])
 
+  // Split contacts by role
+  const onlyClients = clients.filter(c => c.role === 'cliente' || !c.role)
+  const onlyDistributors = clients.filter(c => c.role === 'distribuidor')
+
   const activeClient = clients.find((client) => client.id === activeId) ?? clients[0]
 
   const handleSort = (key) => {
@@ -257,8 +297,17 @@ function PanelPage() {
     setSortConfig({ key, direction })
   }
 
-  const filteredClients = useMemo(() => {
-    let result = clients.filter((client) => {
+  // Calculate total real sales based on transactions
+  const txTotals = useMemo(() => {
+    const totalSpent = transactions.reduce((sum, tx) => sum + tx.amount, 0)
+    const totalUnits = transactions.reduce((sum, tx) => sum + tx.units, 0)
+    return { totalSpent, totalUnits }
+  }, [transactions])
+
+  const filteredContacts = useMemo(() => {
+    const baseList = activeTab === 'distributors' ? onlyDistributors : onlyClients
+
+    let result = baseList.filter((client) => {
       const matchesStatus = statusFilter === 'todos' || client.status === statusFilter
       const term = query.trim().toLowerCase()
       const matchesQuery =
@@ -284,21 +333,23 @@ function PanelPage() {
     })
 
     return result
-  }, [clients, query, statusFilter, sortConfig])
+  }, [onlyClients, onlyDistributors, query, statusFilter, sortConfig, activeTab])
 
   const totals = useMemo(() => {
-    const opportunity = clients.reduce((sum, client) => sum + client.value, 0)
-    const pending = clients.filter((client) => client.status === 'reunion-pendiente').length
-    const fans = clients.filter((client) => client.status === 'nipponflex-fan').length
+    // Total ventas realizadas is from transactions sum
+    const ventasRealizadas = txTotals.totalSpent;
+    const pending = onlyClients.filter((client) => client.status === 'reunion-pendiente').length
+    const fans = onlyClients.filter((client) => client.status === 'nipponflex-fan').length
 
-    return { opportunity, pending, fans, clients: clients.length }
-  }, [clients])
+    return { ventasRealizadas, pending, fans, clients: onlyClients.length, distributors: onlyDistributors.length }
+  }, [onlyClients, onlyDistributors, txTotals])
   
-  const txTotals = useMemo(() => {
-    const totalSpent = transactions.reduce((sum, tx) => sum + tx.amount, 0)
-    const totalUnits = transactions.reduce((sum, tx) => sum + tx.units, 0)
-    return { totalSpent, totalUnits }
-  }, [transactions])
+  const getDistributorMetrics = (distributorName) => {
+    const txs = transactions.filter(t => t.distributor.toLowerCase() === distributorName.toLowerCase())
+    const totalVendido = txs.reduce((sum, tx) => sum + tx.amount, 0)
+    const comision = totalVendido * 0.05 // 5%
+    return { totalVendido, comision }
+  }
 
   const updateClient = (id, field, value) => {
     setClients((current) =>
@@ -353,9 +404,10 @@ function PanelPage() {
     const today = new Date().toISOString().slice(0, 10)
     const newClient = {
       id: nextId,
-      name: 'Nuevo cliente',
+      name: activeTab === 'distributors' ? 'Nuevo distribuidor' : 'Nuevo cliente',
       email: '',
       phone: '+54 9 11',
+      role: activeTab === 'distributors' ? 'distribuidor' : 'cliente',
       source: 'Manual',
       products: [],
       status: 'primer-contacto',
@@ -363,7 +415,7 @@ function PanelPage() {
       lastContactDate: today,
       nextActionDate: today,
       owner: 'Alejandro',
-      situation: 'Contacto creado para seguimiento comercial.',
+      situation: 'Contacto creado manualmente.',
       value: 0,
     }
 
@@ -462,6 +514,15 @@ function PanelPage() {
                   <Plus className="h-4 w-4" />
                   Nuevo cliente
                 </button>
+              ) : activeTab === 'distributors' ? (
+                <button
+                  type="button"
+                  onClick={addClient}
+                  className={`inline-flex items-center justify-center gap-2 rounded-full px-5 py-2 text-sm font-bold transition hover:scale-105 ${themeStyles.buttonPrimary}`}
+                >
+                  <Plus className="h-4 w-4" />
+                  Nuevo distribuidor
+                </button>
               ) : (
                 <button
                   type="button"
@@ -478,12 +539,20 @@ function PanelPage() {
           {/* Tabs */}
           <div className={`flex gap-1 border-b pb-4 ${themeStyles.divider}`}>
             <button
-              onClick={() => setActiveTab('crm')}
+              onClick={() => { setActiveTab('crm'); setActiveId(onlyClients[0]?.id) }}
               className={`px-4 py-2 rounded-lg text-sm font-bold transition-all ${
                 activeTab === 'crm' ? themeStyles.tabActive : themeStyles.tabInactive
               }`}
             >
               CRM Clientes
+            </button>
+            <button
+              onClick={() => { setActiveTab('distributors'); setActiveId(onlyDistributors[0]?.id) }}
+              className={`px-4 py-2 rounded-lg text-sm font-bold transition-all ${
+                activeTab === 'distributors' ? themeStyles.tabActive : themeStyles.tabInactive
+              }`}
+            >
+              Distribuidores
             </button>
             <button
               onClick={() => setActiveTab('transactions')}
@@ -496,12 +565,12 @@ function PanelPage() {
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {activeTab === 'crm' ? (
+            {activeTab === 'crm' || activeTab === 'distributors' ? (
               <>
                 <Metric icon={Users} label="Clientes" value={totals.clients} themeStyles={themeStyles} />
-                <Metric icon={Clock3} label="Reuniones" value={totals.pending} themeStyles={themeStyles} />
+                <Metric icon={Briefcase} label="Distribuidores" value={totals.distributors} themeStyles={themeStyles} />
                 <Metric icon={Heart} label="Fans" value={totals.fans} themeStyles={themeStyles} />
-                <Metric icon={ShoppingBag} label="Oportunidad" value={formatCurrency(totals.opportunity)} themeStyles={themeStyles} />
+                <Metric icon={ShoppingBag} label="Ventas Realizadas" value={formatCurrency(totals.ventasRealizadas)} themeStyles={themeStyles} />
               </>
             ) : (
               <>
@@ -513,7 +582,7 @@ function PanelPage() {
         </div>
       </header>
       
-      {activeTab === 'crm' && (
+      {(activeTab === 'crm' || activeTab === 'distributors') && (
         <>
           <section className="relative z-10 mx-auto grid max-w-7xl gap-6 px-4 py-8 sm:px-6 lg:grid-cols-[1.55fr_0.9fr] lg:px-8">
             <div className={`min-w-0 overflow-hidden transition-colors ${themeStyles.card}`}>
@@ -523,7 +592,7 @@ function PanelPage() {
                   <input
                     value={query}
                     onChange={(event) => setQuery(event.target.value)}
-                    placeholder="Buscar cliente, email, producto..."
+                    placeholder={`Buscar ${activeTab === 'distributors' ? 'distribuidor' : 'cliente'}, email, producto...`}
                     className={`w-full h-11 rounded-xl border pl-11 pr-4 text-sm placeholder-gray-500 outline-none transition focus:ring-1 ${themeStyles.inputBg}`}
                   />
                 </label>
@@ -550,61 +619,89 @@ function PanelPage() {
                   <thead className={`text-xs font-bold uppercase tracking-widest ${themeStyles.tableHeader}`}>
                     <tr>
                       <th className="px-6 py-4 cursor-pointer hover:bg-white/5 transition" onClick={() => handleSort('name')}>
-                        <div className="flex items-center gap-1">Cliente {sortConfig.key === 'name' && (sortConfig.direction === 'asc' ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />)}</div>
+                        <div className="flex items-center gap-1">{activeTab === 'distributors' ? 'Distribuidor' : 'Cliente'} {sortConfig.key === 'name' && (sortConfig.direction === 'asc' ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />)}</div>
                       </th>
                       <th className="px-6 py-4 cursor-pointer hover:bg-white/5 transition" onClick={() => handleSort('status')}>
                         <div className="flex items-center gap-1">Estado {sortConfig.key === 'status' && (sortConfig.direction === 'asc' ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />)}</div>
                       </th>
                       <th className="px-6 py-4 cursor-pointer hover:bg-white/5 transition" onClick={() => handleSort('contactDate')}>
-                        <div className="flex items-center gap-1">Primer Contacto {sortConfig.key === 'contactDate' && (sortConfig.direction === 'asc' ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />)}</div>
+                        <div className="flex items-center gap-1">Registro {sortConfig.key === 'contactDate' && (sortConfig.direction === 'asc' ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />)}</div>
                       </th>
-                      <th className="px-6 py-4 cursor-pointer hover:bg-white/5 transition" onClick={() => handleSort('lastContactDate')}>
-                        <div className="flex items-center gap-1">Último Contacto {sortConfig.key === 'lastContactDate' && (sortConfig.direction === 'asc' ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />)}</div>
-                      </th>
-                      <th className="px-6 py-4 text-right cursor-pointer hover:bg-white/5 transition" onClick={() => handleSort('value')}>
-                        <div className="flex items-center justify-end gap-1">Valor {sortConfig.key === 'value' && (sortConfig.direction === 'asc' ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />)}</div>
-                      </th>
+                      {activeTab === 'distributors' ? (
+                        <>
+                          <th className="px-6 py-4 text-right">Total Vendido</th>
+                          <th className="px-6 py-4 text-right">Comisión (5%)</th>
+                        </>
+                      ) : (
+                        <>
+                          <th className="px-6 py-4 cursor-pointer hover:bg-white/5 transition" onClick={() => handleSort('lastContactDate')}>
+                            <div className="flex items-center gap-1">Último Contacto {sortConfig.key === 'lastContactDate' && (sortConfig.direction === 'asc' ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />)}</div>
+                          </th>
+                          <th className="px-6 py-4 text-right cursor-pointer hover:bg-white/5 transition" onClick={() => handleSort('value')}>
+                            <div className="flex items-center justify-end gap-1">Valor {sortConfig.key === 'value' && (sortConfig.direction === 'asc' ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />)}</div>
+                          </th>
+                        </>
+                      )}
                     </tr>
                   </thead>
                   <tbody className={`divide-y transition-colors ${theme === 'dark' ? 'divide-white/5' : 'divide-gray-100'}`}>
-                    {filteredClients.map((client) => (
-                      <tr
-                        key={client.id}
-                        onClick={() => setActiveId(client.id)}
-                        className={`cursor-pointer transition-colors ${themeStyles.tableRowHover} ${
-                          activeClient?.id === client.id ? themeStyles.tableRowActive : ''
-                        }`}
-                      >
-                        <td className="px-6 py-4">
-                          <div className={`font-bold ${themeStyles.textPrimary}`}>{client.name}</div>
-                          <div className={`mt-1 flex flex-wrap gap-1`}>
-                            {client.products?.slice(0, 1).map((p, i) => (
-                              <span key={i} className={`text-[10px] font-medium px-2 py-0.5 rounded-md ${theme === 'dark' ? 'bg-white/10 text-gray-300' : 'bg-gray-200 text-gray-700'}`}>{p}</span>
-                            ))}
-                            {client.products?.length > 1 && (
-                              <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-md ${theme === 'dark' ? 'bg-emerald-500/20 text-emerald-400' : 'bg-emerald-100 text-emerald-700'}`}>
-                                +{client.products.length - 1}
-                              </span>
+                    {filteredContacts.map((contact) => {
+                      const distMetrics = activeTab === 'distributors' ? getDistributorMetrics(contact.name) : null;
+                      
+                      return (
+                        <tr
+                          key={contact.id}
+                          onClick={() => setActiveId(contact.id)}
+                          className={`cursor-pointer transition-colors ${themeStyles.tableRowHover} ${
+                            activeClient?.id === contact.id ? themeStyles.tableRowActive : ''
+                          }`}
+                        >
+                          <td className="px-6 py-4">
+                            <div className={`font-bold ${themeStyles.textPrimary}`}>{contact.name}</div>
+                            {activeTab === 'crm' && (
+                              <div className={`mt-1 flex flex-wrap gap-1`}>
+                                {contact.products?.slice(0, 1).map((p, i) => (
+                                  <span key={i} className={`text-[10px] font-medium px-2 py-0.5 rounded-md ${theme === 'dark' ? 'bg-white/10 text-gray-300' : 'bg-gray-200 text-gray-700'}`}>{p}</span>
+                                ))}
+                                {contact.products?.length > 1 && (
+                                  <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-md ${theme === 'dark' ? 'bg-emerald-500/20 text-emerald-400' : 'bg-emerald-100 text-emerald-700'}`}>
+                                    +{contact.products.length - 1}
+                                  </span>
+                                )}
+                              </div>
                             )}
-                          </div>
-                        </td>
-                        <td className="px-6 py-4">
-                          <StatusBadge status={getStatus(client.status)} theme={theme} />
-                        </td>
-                        <td className={`px-6 py-4 font-semibold ${themeStyles.textTertiary}`}>{formatDate(client.contactDate)}</td>
-                        <td className={`px-6 py-4 ${themeStyles.textTertiary}`}>
-                          <span className="font-semibold">{formatDate(client.lastContactDate)}</span>
-                          <span className={`ml-2 inline-block rounded-full px-2 py-0.5 text-[10px] font-bold ${theme === 'dark' ? 'bg-white/5 text-gray-400' : 'bg-gray-100 text-gray-600'}`}>
-                            hace {daysBetween(client.lastContactDate)}d
-                          </span>
-                        </td>
-                        <td className={`px-6 py-4 text-right font-black ${themeStyles.textPrimary}`}>{formatCurrency(client.value)}</td>
-                      </tr>
-                    ))}
-                    {filteredClients.length === 0 && (
+                            {activeTab === 'distributors' && (
+                              <div className={`mt-1 text-xs ${themeStyles.textSecondary}`}>{contact.email || 'Sin email'}</div>
+                            )}
+                          </td>
+                          <td className="px-6 py-4">
+                            <StatusBadge status={getStatus(contact.status)} theme={theme} />
+                          </td>
+                          <td className={`px-6 py-4 font-semibold ${themeStyles.textTertiary}`}>{formatDate(contact.contactDate)}</td>
+                          
+                          {activeTab === 'distributors' && distMetrics ? (
+                            <>
+                              <td className={`px-6 py-4 text-right font-black ${themeStyles.textPrimary}`}>{formatCurrency(distMetrics.totalVendido)}</td>
+                              <td className={`px-6 py-4 text-right font-black text-emerald-500`}>{formatCurrency(distMetrics.comision)}</td>
+                            </>
+                          ) : (
+                            <>
+                              <td className={`px-6 py-4 ${themeStyles.textTertiary}`}>
+                                <span className="font-semibold">{formatDate(contact.lastContactDate)}</span>
+                                <span className={`ml-2 inline-block rounded-full px-2 py-0.5 text-[10px] font-bold ${theme === 'dark' ? 'bg-white/5 text-gray-400' : 'bg-gray-100 text-gray-600'}`}>
+                                  hace {daysBetween(contact.lastContactDate)}d
+                                </span>
+                              </td>
+                              <td className={`px-6 py-4 text-right font-black ${themeStyles.textPrimary}`}>{formatCurrency(contact.value)}</td>
+                            </>
+                          )}
+                        </tr>
+                      )
+                    })}
+                    {filteredContacts.length === 0 && (
                       <tr>
                         <td colSpan={5} className={`py-12 text-center text-sm font-medium ${themeStyles.textSecondary}`}>
-                          No se encontraron clientes que coincidan con la búsqueda.
+                          No se encontraron {activeTab === 'distributors' ? 'distribuidores' : 'clientes'} que coincidan con la búsqueda.
                         </td>
                       </tr>
                     )}
@@ -617,7 +714,9 @@ function PanelPage() {
               <aside className={`p-6 h-fit transition-colors ${themeStyles.card}`}>
                 <div className={`flex items-start justify-between gap-4 mb-6 pb-6 border-b ${themeStyles.divider}`}>
                   <div>
-                    <p className={`text-[10px] font-black uppercase tracking-widest mb-1 ${themeStyles.textSecondary}`}>Ficha de cliente</p>
+                    <p className={`text-[10px] font-black uppercase tracking-widest mb-1 ${themeStyles.textSecondary}`}>
+                      Ficha de {activeClient.role === 'distribuidor' ? 'distribuidor' : 'cliente'}
+                    </p>
                     <h2 className={`text-2xl font-black tracking-tight ${themeStyles.textPrimary}`}>{activeClient.name}</h2>
                   </div>
                   <StatusBadge status={getStatus(activeClient.status)} theme={theme} />
@@ -632,19 +731,32 @@ function PanelPage() {
                     />
                   </Field>
 
-                  <Field label="Estado" themeStyles={themeStyles}>
-                    <select
-                      value={activeClient.status}
-                      onChange={(event) => updateClient(activeClient.id, 'status', event.target.value)}
-                      className={`w-full rounded-xl border px-4 py-2.5 text-sm outline-none transition focus:ring-1 ${themeStyles.inputBg}`}
-                    >
-                      {statuses.map((status) => (
-                        <option key={status.id} value={status.id}>
-                          {status.label}
-                        </option>
-                      ))}
-                    </select>
-                  </Field>
+                  <div className="grid gap-5 sm:grid-cols-2">
+                    <Field label="Estado" themeStyles={themeStyles}>
+                      <select
+                        value={activeClient.status}
+                        onChange={(event) => updateClient(activeClient.id, 'status', event.target.value)}
+                        className={`w-full rounded-xl border px-4 py-2.5 text-sm outline-none transition focus:ring-1 ${themeStyles.inputBg}`}
+                      >
+                        {statuses.map((status) => (
+                          <option key={status.id} value={status.id}>
+                            {status.label}
+                          </option>
+                        ))}
+                      </select>
+                    </Field>
+                    
+                    <Field label="Rol" themeStyles={themeStyles}>
+                      <select
+                        value={activeClient.role || 'cliente'}
+                        onChange={(event) => updateClient(activeClient.id, 'role', event.target.value)}
+                        className={`w-full rounded-xl border px-4 py-2.5 text-sm outline-none transition focus:ring-1 ${themeStyles.inputBg}`}
+                      >
+                        <option value="cliente">Cliente</option>
+                        <option value="distribuidor">Distribuidor</option>
+                      </select>
+                    </Field>
+                  </div>
                   
                   <div className="grid gap-5 sm:grid-cols-2">
                     <Field label="Teléfono" themeStyles={themeStyles}>
@@ -666,7 +778,7 @@ function PanelPage() {
                   </div>
 
                   <div className="grid gap-5 sm:grid-cols-2">
-                    <Field label="Primer contacto" themeStyles={themeStyles}>
+                    <Field label="Registro" themeStyles={themeStyles}>
                       <input
                         type="date"
                         value={activeClient.contactDate}
@@ -683,15 +795,30 @@ function PanelPage() {
                       />
                     </Field>
                   </div>
-
-                  <Field label="Valor estimado / comprado" themeStyles={themeStyles}>
-                    <input
-                      type="number"
-                      value={activeClient.value}
-                      onChange={(event) => updateClient(activeClient.id, 'value', event.target.value)}
-                      className={`w-full rounded-xl border px-4 py-2.5 text-sm outline-none transition focus:ring-1 ${themeStyles.inputBg}`}
-                    />
-                  </Field>
+                  
+                  {activeClient.role === 'distribuidor' ? (
+                    <div className="grid gap-5 sm:grid-cols-2">
+                      <Field label="Total Vendido" themeStyles={themeStyles}>
+                         <div className={`w-full rounded-xl border px-4 py-2.5 text-sm font-bold opacity-75 cursor-not-allowed ${themeStyles.inputBg}`}>
+                            {formatCurrency(getDistributorMetrics(activeClient.name).totalVendido)}
+                         </div>
+                      </Field>
+                      <Field label="Comisión Ganada (5%)" themeStyles={themeStyles}>
+                         <div className={`w-full rounded-xl border px-4 py-2.5 text-sm font-black text-emerald-500 opacity-75 cursor-not-allowed ${themeStyles.inputBg}`}>
+                            {formatCurrency(getDistributorMetrics(activeClient.name).comision)}
+                         </div>
+                      </Field>
+                    </div>
+                  ) : (
+                    <Field label="Valor estimado / comprado" themeStyles={themeStyles}>
+                      <input
+                        type="number"
+                        value={activeClient.value}
+                        onChange={(event) => updateClient(activeClient.id, 'value', event.target.value)}
+                        className={`w-full rounded-xl border px-4 py-2.5 text-sm outline-none transition focus:ring-1 ${themeStyles.inputBg}`}
+                      />
+                    </Field>
+                  )}
 
                   <Field label="Productos adquiridos / interesados" themeStyles={themeStyles}>
                     <div className={`p-3 rounded-xl border ${themeStyles.inputBg}`}>
@@ -731,7 +858,7 @@ function PanelPage() {
                       onChange={(event) => updateClient(activeClient.id, 'situation', event.target.value)}
                       rows={4}
                       className={`w-full rounded-xl border px-4 py-2.5 text-sm outline-none transition focus:ring-1 resize-none leading-relaxed ${themeStyles.inputBg}`}
-                      placeholder="Detalles sobre la situación del cliente..."
+                      placeholder="Detalles sobre la situación del contacto..."
                     />
                   </Field>
                 </div>
@@ -739,56 +866,58 @@ function PanelPage() {
             )}
           </section>
 
-          <section className="relative z-10 mx-auto max-w-7xl px-4 pt-4 pb-12 sm:px-6 lg:px-8">
-            <h3 className={`text-sm font-bold uppercase tracking-widest mb-6 ${themeStyles.textSecondary}`}>Pipeline por estado</h3>
-            <div className="grid gap-4 lg:grid-cols-5">
-              {statuses.map((status) => {
-                const Icon = status.icon
-                const statusClients = clients.filter((client) => client.status === status.id)
+          {activeTab === 'crm' && (
+            <section className="relative z-10 mx-auto max-w-7xl px-4 pt-4 pb-12 sm:px-6 lg:px-8">
+              <h3 className={`text-sm font-bold uppercase tracking-widest mb-6 ${themeStyles.textSecondary}`}>Pipeline por estado (Clientes)</h3>
+              <div className="grid gap-4 lg:grid-cols-5">
+                {statuses.map((status) => {
+                  const Icon = status.icon
+                  const statusClients = onlyClients.filter((client) => client.status === status.id)
 
-                return (
-                  <div key={status.id} className={`p-4 transition-colors ${themeStyles.card}`}>
-                    <div className="flex items-center justify-between gap-3 mb-4">
-                      <div className="flex items-center gap-2">
-                        <span className={`inline-flex h-7 w-7 items-center justify-center rounded-lg ${status.color}`}>
-                          <Icon className="h-3.5 w-3.5" />
-                        </span>
-                        <h3 className={`text-xs font-black ${themeStyles.textTertiary}`}>{status.label}</h3>
-                      </div>
-                      <span className={`rounded-full px-2 py-0.5 text-[10px] font-bold ${theme === 'dark' ? 'bg-white/10 text-gray-400' : 'bg-gray-100 text-gray-600'}`}>
-                        {statusClients.length}
-                      </span>
-                    </div>
-                    <div className="space-y-2">
-                      {statusClients.slice(0, 3).map((client) => (
-                        <button
-                          key={client.id}
-                          type="button"
-                          onClick={() => setActiveId(client.id)}
-                          className={`block w-full rounded-xl border px-3 py-2.5 text-left transition ${theme === 'dark' ? 'border-white/5 bg-white/5 hover:border-emerald-500/30 hover:bg-white/10' : 'border-gray-100 bg-gray-50 hover:border-emerald-500/30 hover:bg-gray-100'}`}
-                        >
-                          <span className={`block text-sm font-bold ${themeStyles.textPrimary}`}>{client.name}</span>
-                          <span className={`mt-1 block text-[10px] font-medium truncate ${themeStyles.textSecondary}`}>
-                            {client.products?.[0] || 'Sin producto'}
+                  return (
+                    <div key={status.id} className={`p-4 transition-colors ${themeStyles.card}`}>
+                      <div className="flex items-center justify-between gap-3 mb-4">
+                        <div className="flex items-center gap-2">
+                          <span className={`inline-flex h-7 w-7 items-center justify-center rounded-lg ${status.color}`}>
+                            <Icon className="h-3.5 w-3.5" />
                           </span>
-                        </button>
-                      ))}
-                      {statusClients.length === 0 && (
-                        <div className={`rounded-xl border border-dashed px-3 py-6 text-center text-xs font-bold ${theme === 'dark' ? 'border-white/10 bg-transparent text-gray-600' : 'border-gray-200 bg-transparent text-gray-400'}`}>
-                          Vacío
+                          <h3 className={`text-xs font-black ${themeStyles.textTertiary}`}>{status.label}</h3>
                         </div>
-                      )}
-                      {statusClients.length > 3 && (
-                        <div className={`text-center pt-2 text-[10px] font-bold ${themeStyles.textSecondary}`}>
-                          + {statusClients.length - 3} más
-                        </div>
-                      )}
+                        <span className={`rounded-full px-2 py-0.5 text-[10px] font-bold ${theme === 'dark' ? 'bg-white/10 text-gray-400' : 'bg-gray-100 text-gray-600'}`}>
+                          {statusClients.length}
+                        </span>
+                      </div>
+                      <div className="space-y-2">
+                        {statusClients.slice(0, 3).map((client) => (
+                          <button
+                            key={client.id}
+                            type="button"
+                            onClick={() => setActiveId(client.id)}
+                            className={`block w-full rounded-xl border px-3 py-2.5 text-left transition ${theme === 'dark' ? 'border-white/5 bg-white/5 hover:border-emerald-500/30 hover:bg-white/10' : 'border-gray-100 bg-gray-50 hover:border-emerald-500/30 hover:bg-gray-100'}`}
+                          >
+                            <span className={`block text-sm font-bold ${themeStyles.textPrimary}`}>{client.name}</span>
+                            <span className={`mt-1 block text-[10px] font-medium truncate ${themeStyles.textSecondary}`}>
+                              {client.products?.[0] || 'Sin producto'}
+                            </span>
+                          </button>
+                        ))}
+                        {statusClients.length === 0 && (
+                          <div className={`rounded-xl border border-dashed px-3 py-6 text-center text-xs font-bold ${theme === 'dark' ? 'border-white/10 bg-transparent text-gray-600' : 'border-gray-200 bg-transparent text-gray-400'}`}>
+                            Vacío
+                          </div>
+                        )}
+                        {statusClients.length > 3 && (
+                          <div className={`text-center pt-2 text-[10px] font-bold ${themeStyles.textSecondary}`}>
+                            + {statusClients.length - 3} más
+                          </div>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                )
-              })}
-            </div>
-          </section>
+                  )
+                })}
+              </div>
+            </section>
+          )}
         </>
       )}
 
