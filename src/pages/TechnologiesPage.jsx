@@ -88,7 +88,7 @@ function TechnologiesPage() {
           <article className="fx-card mt-8 rounded-lg border border-[#638cff]/80 bg-white/[0.06] p-5 shadow-2xl shadow-black/30 ring-1 ring-[#d067ff]/25 backdrop-blur sm:p-8 lg:mt-10 lg:grid lg:grid-cols-[0.95fr_1fr] lg:items-center lg:gap-10">
             <div className="overflow-hidden rounded-md bg-[#080d24]/70">
               <img
-                src="/images/technology-mfp.png"
+                src="/images/technology-mfp-magnets.png"
                 alt="Magnetic FIR Power como sinergia de tecnologias Nipponflex"
                 className="w-full object-contain"
               />
