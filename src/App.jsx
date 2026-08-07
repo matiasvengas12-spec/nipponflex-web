@@ -4,12 +4,16 @@ import SiteFooter from './components/layout/SiteFooter'
 import SiteHeader from './components/layout/SiteHeader'
 import BiohackingPage from './pages/BiohackingPage'
 import DistributorsPage from './pages/DistributorsPage'
+import PanelPage from './pages/PanelPage'
 import TechnologiesPage from './pages/TechnologiesPage'
 
 function App() {
   const path = window.location.pathname
+  const isPanel = path === '/panel'
   const Page =
-    path === '/biohacking'
+    isPanel
+      ? PanelPage
+      : path === '/biohacking'
       ? BiohackingPage
       : path === '/tecnologias'
         ? TechnologiesPage
@@ -28,9 +32,9 @@ function App() {
 
   return (
     <>
-      <SiteHeader />
+      {!isPanel && <SiteHeader />}
       <Page />
-      <SiteFooter />
+      {!isPanel && <SiteFooter />}
     </>
   )
 }
