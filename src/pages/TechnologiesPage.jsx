@@ -73,9 +73,24 @@ function TechnologiesPage() {
   return (
     <main className="bg-black text-white selection:bg-emerald-500/30 overflow-hidden" ref={containerRef}>
       {/* Hero Section */}
-      <section className="relative min-h-[85vh] flex flex-col items-center justify-center pt-20 px-6">
+      <section className="relative min-h-[85vh] flex flex-col items-center justify-center pt-20 px-6 overflow-hidden">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 2, ease: "easeOut" }}
+          className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none"
+        >
+          <img 
+            src="/images/technology-mfp-magnets.png" 
+            alt="Fondo Tecnología Nipponflex" 
+            className="w-[800px] h-[800px] object-contain opacity-25 mix-blend-screen"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black" />
+        </motion.div>
+
         <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
-          <div className="w-[600px] h-[600px] bg-emerald-900/20 rounded-full blur-[120px] mix-blend-screen opacity-50" />
+          <div className="w-[600px] h-[600px] bg-emerald-900/20 rounded-full blur-[120px] mix-blend-screen opacity-60" />
           <div className="absolute w-[500px] h-[500px] bg-indigo-900/20 rounded-full blur-[100px] mix-blend-screen opacity-30 -translate-x-1/4 -translate-y-1/4" />
         </div>
 
