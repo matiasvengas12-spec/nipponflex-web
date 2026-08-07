@@ -1,3 +1,5 @@
+import { buildWhatsAppUrl } from '../config/contact'
+
 const habitCards = [
   {
     title: 'Dormir mejor',
@@ -49,18 +51,65 @@ const advisorySteps = [
 function BiohackingPage() {
   return (
     <main className="bg-[#06391f]">
-      <section className="bg-[#fbf9ef] px-4 py-12 sm:px-8 sm:py-16 lg:px-10">
-        <div className="mx-auto max-w-5xl">
-          <div className="text-center">
-            <p className="text-sm font-black text-[#79906c]">
-              Vida Plena Nipponflex
-            </p>
-            <h1 className="mt-1 text-3xl font-black leading-tight text-[#173d2b] sm:text-5xl">
-              Biohacking aplicado a hábitos simples
-            </h1>
+      <section className="bg-[linear-gradient(135deg,#fbf9ef_0%,#f4f1df_52%,#e7eedf_100%)] px-4 py-12 sm:px-8 sm:py-16 lg:px-10">
+        <div className="mx-auto max-w-6xl">
+          <div className="grid gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:items-end">
+            <div>
+              <p className="text-sm font-black uppercase tracking-normal text-[#9d843f]">
+                Vida Plena Nipponflex
+              </p>
+              <h1 className="mt-3 max-w-3xl text-4xl font-black leading-[1.03] text-[#173d2b] sm:text-6xl">
+                Biohacking simple para elegir mejor cada día
+              </h1>
+              <p className="mt-5 max-w-2xl text-base font-medium leading-7 text-[#526956] sm:text-lg sm:leading-8">
+                Descanso, agua y movimiento son las tres puertas de entrada.
+                Te ayudamos a leer la rutina y conectar cada hábito con una
+                recomendación Nipponflex clara, concreta y fácil de sostener.
+              </p>
+
+              <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+                <a
+                  href={buildWhatsAppUrl(
+                    'Hola, quiero asesoramiento sobre biohacking y productos Nipponflex.',
+                  )}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center rounded-md bg-[#148a45] px-5 py-3.5 text-sm font-black text-white shadow-lg shadow-green-950/15 transition hover:-translate-y-0.5 hover:bg-[#0f7338] focus:outline-none focus:ring-4 focus:ring-[#98d5ad]"
+                >
+                  Solicitar asesoramiento
+                </a>
+                <a
+                  href="/#catalogo"
+                  className="inline-flex items-center justify-center rounded-md border border-[#9d843f]/55 bg-white/55 px-5 py-3.5 text-sm font-black text-[#173d2b] transition hover:-translate-y-0.5 hover:bg-white focus:outline-none focus:ring-4 focus:ring-[#e5dab7]"
+                >
+                  Ver productos
+                </a>
+              </div>
+            </div>
+
+            <div className="grid gap-3 border-l-0 border-[#c7ab54]/45 pt-1 lg:border-l lg:pl-8">
+              {habitCards.map((card, index) => (
+                <div
+                  key={card.title}
+                  className="grid grid-cols-[44px_1fr] items-center gap-4 rounded-lg border border-[#d9cfaa] bg-white/58 p-4 shadow-lg shadow-green-950/5 backdrop-blur"
+                >
+                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-[#173d2b] text-sm font-black text-[#f3d47a]">
+                    0{index + 1}
+                  </span>
+                  <div>
+                    <h2 className="text-lg font-black leading-tight text-[#173d2b]">
+                      {card.title}
+                    </h2>
+                    <p className="mt-1 text-sm font-medium leading-5 text-[#526956]">
+                      {card.points[0]} · {card.points[2]}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
 
-          <div className="mt-8 grid gap-4 md:grid-cols-3">
+          <div className="mt-10 grid gap-4 md:grid-cols-3">
             {habitCards.map((card) => (
               <article
                 key={card.title}
