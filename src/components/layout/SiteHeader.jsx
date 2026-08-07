@@ -14,12 +14,12 @@ function SiteHeader() {
   const closeMenu = () => setIsMenuOpen(false)
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 pt-4 px-4 sm:px-6 pointer-events-none">
-      <div className="mx-auto flex max-w-5xl items-center justify-between gap-3 py-3 px-6 rounded-full border border-white/20 bg-white/70 backdrop-blur-xl shadow-lg shadow-black/5 pointer-events-auto transition-all duration-300">
-        
-        <a href="/" className="min-w-0 text-base font-black tracking-tight text-gray-900 transition hover:opacity-80 sm:text-lg">
-          Vidasanasm Nipponflex
-        </a>
+    <>
+      <header className="fixed top-0 left-0 right-0 z-50 pt-4 px-4 sm:px-6 pointer-events-none">
+        <div className="mx-auto flex max-w-5xl items-center justify-between gap-3 py-3 px-6 rounded-full border border-white/20 bg-white/70 backdrop-blur-xl shadow-lg shadow-black/5 pointer-events-auto transition-all duration-300">
+          <a href="/" className="min-w-0 text-base font-black tracking-tight text-gray-900 transition hover:opacity-80 sm:text-lg">
+            Vidasanasm Nipponflex
+          </a>
 
         {/* Desktop Menu */}
         <div className="hidden lg:flex items-center gap-2">
@@ -65,16 +65,17 @@ function SiteHeader() {
             <span className={`block h-0.5 w-full rounded-full bg-gray-900 transition-all ${isMenuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
           </span>
         </button>
-      </div>
+        </div>
+      </header>
 
-      {/* Mobile Menu Dropdown */}
+      {/* Mobile Menu Panel */}
       <div
         id="mobile-menu"
-        className={`fixed left-4 right-4 top-24 max-h-[calc(100dvh-7rem)] overflow-y-auto rounded-2xl border border-white/30 bg-white/95 backdrop-blur-xl shadow-2xl shadow-black/15 transition-all duration-300 origin-top pointer-events-auto sm:left-6 sm:right-6 lg:hidden ${
-          isMenuOpen ? 'translate-y-0 opacity-100 scale-100' : '-translate-y-2 opacity-0 scale-95 pointer-events-none'
+        className={`fixed inset-x-0 top-[7rem] z-40 max-h-[calc(100dvh-7rem)] overflow-y-auto border-t border-emerald-100 bg-white px-4 pb-6 pt-4 shadow-2xl shadow-black/20 transition-all duration-300 origin-top pointer-events-auto sm:px-6 lg:hidden ${
+          isMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-3 opacity-0 pointer-events-none'
         }`}
       >
-        <div className="p-3 flex flex-col gap-2">
+        <div className="mx-auto flex max-w-md flex-col gap-2">
           <nav aria-label="Navegación principal" className="flex flex-col gap-1">
             {navItems.map((item) => (
               <a
@@ -103,7 +104,7 @@ function SiteHeader() {
           </a>
         </div>
       </div>
-    </header>
+    </>
   )
 }
 

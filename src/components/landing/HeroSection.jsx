@@ -11,7 +11,7 @@ function HeroSection() {
       <div className="absolute inset-0 bg-gradient-to-r from-black/72 via-black/42 to-black/10" />
       <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/55" />
 
-      <div className="relative z-10 mx-auto flex min-h-[680px] max-w-7xl items-center px-4 py-20 sm:min-h-[760px] sm:px-8 lg:min-h-[calc(100svh-72px)] lg:px-10">
+      <div className="relative z-10 mx-auto flex min-h-[680px] max-w-7xl items-center px-4 pb-20 pt-40 sm:min-h-[760px] sm:px-8 sm:py-20 lg:min-h-[calc(100svh-72px)] lg:px-10">
         <div className="max-w-4xl text-white">
           <p className="fx-reveal hidden text-sm font-black uppercase tracking-normal text-white/90 sm:block sm:text-lg">
             Bienestar que se siente, tecnología que se demuestra
