@@ -18,10 +18,13 @@ import {
   ChevronUp,
   X
 } from 'lucide-react'
+import { featuredProducts } from '../data/products'
 
-const STORAGE_KEY = 'vidasanasm-crm-demo-v2'
-const TRANSACTIONS_STORAGE_KEY = 'vidasanasm-transactions-demo-v2'
+const STORAGE_KEY = 'vidasanasm-crm-demo-v3'
+const TRANSACTIONS_STORAGE_KEY = 'vidasanasm-transactions-demo-v3'
 const THEME_STORAGE_KEY = 'vidasanasm-crm-theme'
+
+const CATALOG_PRODUCTS = featuredProducts.map(p => p.name)
 
 const statuses = [
   {
@@ -65,9 +68,10 @@ const initialClients = [
   {
     id: 1,
     name: 'Mariana Costa',
+    email: 'mariana.costa@email.com',
     phone: '+54 9 11 5248-9031',
     source: 'Instagram',
-    products: ['Colchón FIR Power'],
+    products: ['Colchón Evolution FIR Gz Relax'],
     status: 'reunion-pendiente',
     contactDate: '2026-08-01',
     lastContactDate: '2026-08-07',
@@ -80,9 +84,10 @@ const initialClients = [
   {
     id: 2,
     name: 'Federico Ramos',
+    email: 'fede.ramos88@email.com',
     phone: '+54 9 11 6821-4419',
     source: 'WhatsApp',
-    products: ['Kit familiar Magneto', 'Plantillas Magnéticas'],
+    products: ['Kit Familiar', 'Plantilla Insole Power'],
     status: 'segundo-contacto',
     contactDate: '2026-08-03',
     lastContactDate: '2026-08-07',
@@ -95,9 +100,10 @@ const initialClients = [
   {
     id: 3,
     name: 'Claudia Méndez',
+    email: 'clau.mendez@email.com',
     phone: '+54 9 11 3904-2208',
     source: 'Referido',
-    products: ['Purificador Ion Ball', 'Manta FIR Power', 'Pulsera magnética'],
+    products: ['Jarra Purificadora Alcaline Max 3 Lts.', 'Pulsera FIR ION'],
     status: 'primer-compra',
     contactDate: '2026-07-15',
     lastContactDate: '2026-08-05',
@@ -112,7 +118,7 @@ const initialClients = [
 const initialTransactions = [
   {
     id: 1,
-    product: 'Colchón FIR Power Queen',
+    product: 'Colchón Evolution FIR Gz Relax',
     amount: 850000,
     units: 1,
     date: '2026-08-01',
@@ -120,7 +126,7 @@ const initialTransactions = [
   },
   {
     id: 2,
-    product: 'Almohadas Magnéticas',
+    product: 'KIT Pillows',
     amount: 140000,
     units: 2,
     date: '2026-08-03',
@@ -128,7 +134,7 @@ const initialTransactions = [
   },
   {
     id: 3,
-    product: 'Kit familiar Magneto',
+    product: 'Kit Familiar',
     amount: 420000,
     units: 1,
     date: '2026-08-05',
@@ -224,7 +230,7 @@ function PanelPage() {
   const [sortConfig, setSortConfig] = useState({ key: 'lastContactDate', direction: 'desc' })
 
   // Product Tag Input State
-  const [newProductInput, setNewProductInput] = useState('')
+  const [newProductInput, setNewProductInput] = useState(CATALOG_PRODUCTS[0])
 
   // Transactions State
   const [transactions, setTransactions] = useState(() => loadStoredData(TRANSACTIONS_STORAGE_KEY, initialTransactions))
@@ -257,7 +263,7 @@ function PanelPage() {
       const term = query.trim().toLowerCase()
       const matchesQuery =
         !term ||
-        [client.name, client.phone, client.source, ...(client.products || []), client.situation]
+        [client.name, client.email, client.phone, client.source, ...(client.products || []), client.situation]
           .join(' ')
           .toLowerCase()
           .includes(term)
@@ -311,21 +317,20 @@ function PanelPage() {
     )
   }
 
-  const addProductToClient = (e) => {
-    e.preventDefault()
-    if (!newProductInput.trim() || !activeClient) return
+  const addProductToClient = () => {
+    if (!newProductInput || !activeClient) return
 
     setClients((current) =>
       current.map((client) =>
         client.id === activeClient.id
           ? {
               ...client,
-              products: [...(client.products || []), newProductInput.trim()],
+              products: [...(client.products || []), newProductInput],
             }
           : client
       )
     )
-    setNewProductInput('')
+    setNewProductInput(CATALOG_PRODUCTS[0])
   }
 
   const removeProductFromClient = (productToRemove) => {
@@ -349,6 +354,7 @@ function PanelPage() {
     const newClient = {
       id: nextId,
       name: 'Nuevo cliente',
+      email: '',
       phone: '+54 9 11',
       source: 'Manual',
       products: [],
@@ -370,7 +376,7 @@ function PanelPage() {
     const today = new Date().toISOString().slice(0, 10)
     const newTx = {
       id: nextId,
-      product: 'Nuevo producto',
+      product: CATALOG_PRODUCTS[0],
       amount: 0,
       units: 1,
       date: today,
@@ -517,7 +523,7 @@ function PanelPage() {
                   <input
                     value={query}
                     onChange={(event) => setQuery(event.target.value)}
-                    placeholder="Buscar cliente, producto o situación..."
+                    placeholder="Buscar cliente, email, producto..."
                     className={`w-full h-11 rounded-xl border pl-11 pr-4 text-sm placeholder-gray-500 outline-none transition focus:ring-1 ${themeStyles.inputBg}`}
                   />
                 </label>
@@ -639,6 +645,25 @@ function PanelPage() {
                       ))}
                     </select>
                   </Field>
+                  
+                  <div className="grid gap-5 sm:grid-cols-2">
+                    <Field label="Teléfono" themeStyles={themeStyles}>
+                      <input
+                        value={activeClient.phone}
+                        onChange={(event) => updateClient(activeClient.id, 'phone', event.target.value)}
+                        className={`w-full rounded-xl border px-4 py-2.5 text-sm outline-none transition focus:ring-1 ${themeStyles.inputBg}`}
+                      />
+                    </Field>
+                    <Field label="Email" themeStyles={themeStyles}>
+                      <input
+                        type="email"
+                        value={activeClient.email || ''}
+                        onChange={(event) => updateClient(activeClient.id, 'email', event.target.value)}
+                        placeholder="ejemplo@email.com"
+                        className={`w-full rounded-xl border px-4 py-2.5 text-sm outline-none transition focus:ring-1 ${themeStyles.inputBg}`}
+                      />
+                    </Field>
+                  </div>
 
                   <div className="grid gap-5 sm:grid-cols-2">
                     <Field label="Primer contacto" themeStyles={themeStyles}>
@@ -659,23 +684,14 @@ function PanelPage() {
                     </Field>
                   </div>
 
-                  <div className="grid gap-5 sm:grid-cols-2">
-                    <Field label="Teléfono" themeStyles={themeStyles}>
-                      <input
-                        value={activeClient.phone}
-                        onChange={(event) => updateClient(activeClient.id, 'phone', event.target.value)}
-                        className={`w-full rounded-xl border px-4 py-2.5 text-sm outline-none transition focus:ring-1 ${themeStyles.inputBg}`}
-                      />
-                    </Field>
-                    <Field label="Valor estimado" themeStyles={themeStyles}>
-                      <input
-                        type="number"
-                        value={activeClient.value}
-                        onChange={(event) => updateClient(activeClient.id, 'value', event.target.value)}
-                        className={`w-full rounded-xl border px-4 py-2.5 text-sm outline-none transition focus:ring-1 ${themeStyles.inputBg}`}
-                      />
-                    </Field>
-                  </div>
+                  <Field label="Valor estimado / comprado" themeStyles={themeStyles}>
+                    <input
+                      type="number"
+                      value={activeClient.value}
+                      onChange={(event) => updateClient(activeClient.id, 'value', event.target.value)}
+                      className={`w-full rounded-xl border px-4 py-2.5 text-sm outline-none transition focus:ring-1 ${themeStyles.inputBg}`}
+                    />
+                  </Field>
 
                   <Field label="Productos adquiridos / interesados" themeStyles={themeStyles}>
                     <div className={`p-3 rounded-xl border ${themeStyles.inputBg}`}>
@@ -688,18 +704,24 @@ function PanelPage() {
                             </button>
                           </span>
                         ))}
+                        {(!activeClient.products || activeClient.products.length === 0) && (
+                          <span className={`text-xs ${themeStyles.textSecondary}`}>Sin productos asignados</span>
+                        )}
                       </div>
-                      <form onSubmit={addProductToClient} className="flex gap-2">
-                        <input
+                      <div className="flex gap-2">
+                        <select
                           value={newProductInput}
                           onChange={(e) => setNewProductInput(e.target.value)}
-                          placeholder="Añadir producto y presionar enter..."
-                          className={`flex-1 bg-transparent text-sm outline-none ${themeStyles.textPrimary} placeholder-gray-500`}
-                        />
-                        <button type="submit" className={`p-1 rounded-md transition ${theme === 'dark' ? 'bg-white/10 hover:bg-white/20' : 'bg-gray-200 hover:bg-gray-300'}`}>
+                          className={`flex-1 bg-transparent text-sm outline-none ${themeStyles.textPrimary} border-b border-dashed border-gray-400 pb-1 cursor-pointer`}
+                        >
+                          {CATALOG_PRODUCTS.map((prod, i) => (
+                            <option key={i} value={prod} className="text-black bg-white">{prod}</option>
+                          ))}
+                        </select>
+                        <button onClick={addProductToClient} type="button" className={`p-1.5 rounded-md transition ${theme === 'dark' ? 'bg-white/10 hover:bg-white/20 text-white' : 'bg-gray-200 hover:bg-gray-300 text-black'}`}>
                           <Plus className="w-4 h-4" />
                         </button>
-                      </form>
+                      </div>
                     </div>
                   </Field>
 
@@ -785,11 +807,15 @@ function PanelPage() {
                 <div key={tx.id} className={`grid grid-cols-1 md:grid-cols-6 gap-4 p-4 rounded-xl border items-center transition hover:border-emerald-500/30 ${theme === 'dark' ? 'border-white/5 bg-white/5' : 'border-gray-100 bg-gray-50'}`}>
                   <div className="md:col-span-2">
                     <Field label="Descripción de producto" themeStyles={themeStyles}>
-                      <input
+                      <select
                         value={tx.product}
                         onChange={(e) => updateTransaction(tx.id, 'product', e.target.value)}
-                        className={`w-full bg-transparent border-b py-1 text-sm outline-none transition focus:border-emerald-500 ${theme === 'dark' ? 'border-white/10 text-white' : 'border-gray-300 text-gray-900'}`}
-                      />
+                        className={`w-full bg-transparent border-b py-1 text-sm outline-none transition focus:border-emerald-500 ${theme === 'dark' ? 'border-white/10 text-white' : 'border-gray-300 text-gray-900'} cursor-pointer`}
+                      >
+                        {CATALOG_PRODUCTS.map((prod, i) => (
+                          <option key={i} value={prod} className="text-black bg-white">{prod}</option>
+                        ))}
+                      </select>
                     </Field>
                   </div>
                   <div className="md:col-span-1">
